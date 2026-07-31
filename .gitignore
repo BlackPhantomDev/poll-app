@@ -42,3 +42,10 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+claude.md
+.claude
+/notes
+
+# Local environment
+/src/environments/environment.ts
