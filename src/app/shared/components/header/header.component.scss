@@ -8,14 +8,13 @@
   gap: var(--space-md);
   height: var(--layout-header-height);
   padding-inline: var(--layout-gutter);
-  background-color: var(--color-page);
-  border-bottom: 1px solid var(--color-line);
+  background-color: var(--color-bg-light);
 }
 
 .header__logo {
   font-family: var(--font-display);
   font-size: var(--font-size-xl);
-  color: var(--color-text);
+  color: var(--color-text-dark);
 }
 
 .header__cta {
@@ -25,9 +24,13 @@
   padding-inline: var(--space-md);
   padding-block: var(--space-2xs);
   border-radius: var(--radius-pill);
-  background-color: var(--color-accent);
-  color: var(--color-on-accent);
+  background-color: var(--color-primary-btn);
+  color: var(--color-text-dark);
   font-weight: var(--font-weight-medium);
+
+  &:hover {
+    background-color: var(--color-primary-btn-hover);
+  }
 
   @include focus-visible;
 }

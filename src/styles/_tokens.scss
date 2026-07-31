@@ -1,53 +1,69 @@
 $colors: (
-  'ink': #2b2136,
-  'ink-raised': #3a2f45,
-  'ink-soft': #4c4058,
-  'accent': #efb474,
-  'accent-strong': #e09b4e,
-  'surface': #f0eff3,
-  'page': #fbfafc,
-  'line': #ddd9e2,
-  'text': #2b2136,
-  'text-muted': #6b6076,
-  'on-ink': #f4f1f7,
-  'on-ink-muted': #a79db2,
-  'on-accent': #2b2136,
-  'danger': #c25450,
-  'success': #4e8c6a
-);
+  'primary-orange': #FFB770,
+  'secondary-orange': #FFCFA1,
+  'light-orange': #FEE9D4,
+  
+  'primary-purple': #35273A,
+  'secondary-purple': #423447,
+  'hover-purple': #4F4453,
 
+  'ending-cards': #faf5fe,
+  'ending-cards-hover': #f4e9fb,
+
+  'primary-btn': var(--color-secondary-orange),
+  'primary-btn-hover': var(--color-primary-orange),
+
+  'secondary-btn': #FFB77099,
+  'secondary-btn-hover': #FFB7704D,
+  
+  'filter-btn': var(--color-light-orange),
+  'filter-btn-hover': var(--color-secondary-orange),
+  'filter-btn-active': var(--color-primary-orange),
+
+  'survey-status-published': var(--color-primary-orange),
+  'survey-status-darft': var(--color-light-orange),
+  
+  'input-field-bg': #FEFDFF, 
+  'input-field-bg-active': var(--color-light-orange),
+
+  'bg-light': #FEFDFF,
+
+  'text-dark': var(--color-primary-purple),
+  'text-light': #fff,
+
+);
+  
 $space: (
-  '3xs': 0.25rem,
-  '2xs': 0.5rem,
-  'xs': 0.75rem,
-  'sm': 1rem,
-  'md': 1.5rem,
-  'lg': 2rem,
-  'xl': 3rem,
-  '2xl': 4rem,
-  '3xl': 6rem
+  '3xs': 4px,
+  '2xs': 8px,
+  'xs': 12px,
+  'sm': 16px,
+  'md': 24px,
+  'lg': 32px,
+  'xl': 48px,
+  '2xl': 64px,
+  '3xl': 96px
 );
 
 $radii: (
-  'sm': 0.5rem,
-  'md': 1rem,
-  'lg': 1.5rem,
+  'sm': 8px,
+  'md': 16px,
+  'lg': 24px,
   'pill': 999px,
-  'corner': 4rem
+  'corner': 64px
 );
 
 $font-display: 'PollApp Display', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
 $font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
 $font-sizes: (
-  'xs': 0.75rem,
-  'sm': 0.875rem,
-  'md': 1rem,
-  'lg': 1.125rem,
-  'xl': 1.5rem,
-  '2xl': 2rem,
-  '3xl': 2.75rem,
-  '4xl': 3.5rem
+  'base': 16px,
+  'md': 18px,
+  'lg': 20px,
+  'xl': 24px,
+  '2xl': 32px,
+  '3xl': 44px,
+  '4xl': 56px
 );
 
 $line-heights: (
@@ -78,17 +94,17 @@ $durations: (
 $easing: cubic-bezier(0.2, 0.8, 0.2, 1);
 
 $layout: (
-  'container': 72rem,
-  'container-narrow': 44rem,
-  'gutter': 1.5rem,
-  'header-height': 4.5rem
+  'container': 1152px,
+  'container-narrow': 704px,
+  'gutter': 24px,
+  'header-height': 72px
 );
 
 $breakpoints: (
-  'sm': 40rem,
-  'md': 52rem,
-  'lg': 64rem,
-  'xl': 80rem
+  'sm': 640px,
+  'md': 832px,
+  'lg': 1024px,
+  'xl': 1280px
 );
 
 @mixin root-tokens {

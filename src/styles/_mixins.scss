@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'tokens' as *;
 
-@mixin card-shape($corner: top-right, $radius: 4rem) {
+@mixin card-shape($corner: top-right, $radius: 64px) {
   border-radius: var(--radius-md);
 
   @if $corner == top-right {
@@ -25,12 +25,12 @@
   }
 }
 
-@mixin focus-ring($color: var(--color-accent-strong), $offset: 2px) {
+@mixin focus-ring($color: var(--color-primary-orange), $offset: 2px) {
   outline: 2px solid $color;
   outline-offset: $offset;
 }
 
-@mixin focus-visible($color: var(--color-accent-strong), $offset: 2px) {
+@mixin focus-visible($color: var(--color-primary-orange), $offset: 2px) {
   &:focus-visible {
     @include focus-ring($color, $offset);
   }
