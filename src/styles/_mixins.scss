@@ -1,0 +1,74 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+@mixin card-shape($corner: top-right, $radius: 4rem) {
+  border-radius: var(--radius-md);
+
+  @if $corner == top-right {
+    border-top-right-radius: $radius;
+  }
+
+  @if $corner == bottom-left {
+    border-bottom-left-radius: $radius;
+  }
+}
+
+@mixin media-up($name) {
+  $width: map.get($breakpoints, $name);
+
+  @if $width == null {
+    @error 'Unbekannter Breakpoint: #{$name}';
+  }
+
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin focus-ring($color: var(--color-accent-strong), $offset: 2px) {
+  outline: 2px solid $color;
+  outline-offset: $offset;
+}
+
+@mixin focus-visible($color: var(--color-accent-strong), $offset: 2px) {
+  &:focus-visible {
+    @include focus-ring($color, $offset);
+  }
+}
+
+@mixin reset-button {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+}
+
+@mixin container($width: container) {
+  width: 100%;
+  max-width: var(--layout-#{$width});
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+}
+
+@mixin display-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-tight);
+}
