@@ -53,8 +53,9 @@ $radii: (
   'corner': 64px
 );
 
-$font-display: 'PollApp Display', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
-$font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-heading: Nerko, 'Comic Sans MS', cursive;
+$font-body: Mulish, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+$font-button: Nokora, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
 $font-sizes: (
   'base': 16px,
@@ -96,8 +97,8 @@ $easing: cubic-bezier(0.2, 0.8, 0.2, 1);
 $layout: (
   'container': 1152px,
   'container-narrow': 704px,
-  'gutter': 24px,
-  'header-height': 72px
+  'gutter': 48px,
+  'header-height': 96px
 );
 
 $breakpoints: (
@@ -121,8 +122,9 @@ $breakpoints: (
       --radius-#{$name}: #{$value};
     }
 
-    --font-display: #{$font-display};
-    --font-sans: #{$font-sans};
+    --font-heading: #{$font-heading};
+    --font-body: #{$font-body};
+    --font-button: #{$font-button};
 
     @each $name, $value in $font-sizes {
       --font-size-#{$name}: #{$value};
