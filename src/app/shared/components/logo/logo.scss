@@ -1,0 +1,21 @@
+@use '../../../../styles/tokens' as *;
+
+:host {
+  --logo-bubble: var(--color-primary-orange);
+  --logo-mark: var(--color-primary-purple);
+  --logo-mark-opacity: 0.3;
+
+  display: inline-flex;
+}
+
+:host(.logo--dark) {
+  --logo-bubble: var(--color-primary-purple);
+  --logo-mark: var(--color-secondary-orange);
+  --logo-mark-opacity: 1;
+}
+
+svg {
+  display: block;
+  height: var(--logo-size, 50px);
+  width: auto;
+}
