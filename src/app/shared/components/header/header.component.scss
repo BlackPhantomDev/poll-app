@@ -7,8 +7,6 @@
   justify-content: space-between;
   gap: var(--space-md);
   height: var(--layout-header-height);
-  padding-inline: var(--layout-gutter);
-  background-color: var(--color-bg-light);
 }
 
 .header__logo {
@@ -20,28 +18,14 @@
   gap: var(--space-xs);
   align-items: flex-start;
 
+  app-logo {
+    --logo-size: 40px;
+  }
+
   &--name {
     display: flex;
     flex-direction: column;
     line-height: 15px;
+    color: var(--color-primary-orange)
   } 
-}
-
-.header__cta {
-  @include reset-button;
-  display: inline-flex;
-  align-items: center;
-  padding-inline: var(--space-md);
-  padding-block: var(--space-2xs);
-  border-radius: var(--radius-pill);
-  background-color: var(--color-primary-btn);
-  color: var(--color-text-dark);
-  font-family: var(--font-button);
-  font-weight: var(--font-weight-medium);
-
-  &:hover {
-    background-color: var(--color-primary-btn-hover);
-  }
-
-  @include focus-visible;
 }
