@@ -1,0 +1,9 @@
+@use '../../../../styles/mixins' as *;
+
+:host {
+    display: inline-block;
+    background-color: var(--color-secondary-orange);
+    @include card-shape;
+    font-size: 12px;
+    padding: 0 8px 0 4px;
+}
