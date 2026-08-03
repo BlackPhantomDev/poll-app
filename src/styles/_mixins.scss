@@ -2,9 +2,7 @@
 @use 'tokens' as *;
 
 @mixin card-shape($corner: top-right, $radius: 64px) {
-  border-radius: var(--radius-md);
-
-  @if $corner == top-right {
+   @if $corner == top-right {
     border-top-right-radius: $radius;
   }
 
