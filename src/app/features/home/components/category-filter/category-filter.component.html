@@ -1,1 +1,17 @@
-<p>category-filter works!</p>
+<select
+    class="category-filter__select"
+    aria-label="Filter surveys by category"
+    (change)="onChange($event)"
+>
+    <option value="" [selected]="selected() === null">Sort by categories</option>
+
+    @for (category of categories; track category.slug) {
+        <option [value]="category.slug" [selected]="selected() === category.slug">
+            {{ category.label }}
+        </option>
+    }
+</select>
+
+<svg class="category-filter__arrow" viewBox="0 0 10 6" aria-hidden="true">
+    <path d="M0 0h10L5 6z" fill="currentColor" />
+</svg>

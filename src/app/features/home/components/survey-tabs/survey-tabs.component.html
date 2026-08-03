@@ -1,1 +1,11 @@
-<p>survey-tabs works!</p>
+@for (tab of tabs; track tab.id) {
+    <button
+        type="button"
+        class="survey-tabs__tab"
+        [class.survey-tabs__tab--active]="active() === tab.id"
+        [attr.aria-pressed]="active() === tab.id"
+        (click)="activeChange.emit(tab.id)"
+    >
+        {{ tab.label }}
+    </button>
+}

@@ -1,0 +1,31 @@
+@use '../../../../../styles/tokens' as *;
+@use '../../../../../styles/mixins' as *;
+
+:host {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+}
+
+.survey-tabs__tab {
+    @include reset-button;
+    @include focus-visible;
+
+    padding-inline: var(--space-xs);
+    padding-block: var(--space-3xs);
+    border-radius: var(--radius-pill);
+    background-color: var(--color-filter-btn);
+    color: var(--color-text-dark);
+    font-family: var(--font-button);
+    font-size: var(--font-size-sm);
+    transition: background-color var(--duration-fast) var(--easing);
+
+    // Hover nur auf dem inaktiven Tab, sonst überschreibt er die Aktiv-Farbe.
+    &:not(.survey-tabs__tab--active):hover {
+        background-color: var(--color-filter-btn-hover);
+    }
+
+    &--active {
+        background-color: var(--color-filter-btn-active);
+    }
+}
