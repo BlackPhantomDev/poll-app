@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    margin: 32px 0;
+}
+
+#hero{
+    &__left{
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+        width: 60%;
+        height: auto;
+        & p {
+            font-family: Mulish;
+            color: white;
+            font-size: var(--font-size-xl);
+        }
+        & app-button {
+            font-size: 18px;
+        }
+    }
+    &__right {
+        width: 40%;
+        height: auto;
+    }
+}
