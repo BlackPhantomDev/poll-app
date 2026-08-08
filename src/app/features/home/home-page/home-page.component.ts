@@ -6,6 +6,7 @@ import { EndingSoonComponent } from '../components/ending-soon/ending-soon.compo
 import { CategoryFilterComponent } from '../components/category-filter/category-filter.component';
 import { SurveyTabsComponent, SurveyTab } from '../components/survey-tabs/survey-tabs.component';
 import { CategorySlug } from '../../../core/constants/categories';
+import { SurveyListComponent } from '../components/survey-list/survey-list.component';
 
 @Component({
   selector: 'app-home-page',
@@ -15,6 +16,7 @@ import { CategorySlug } from '../../../core/constants/categories';
     EndingSoonComponent,
     CategoryFilterComponent,
     SurveyTabsComponent,
+    SurveyListComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
