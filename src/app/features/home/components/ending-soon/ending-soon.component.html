@@ -2,9 +2,9 @@
 
 <p>Ending soon surveys</p>
 
-<div id="cards-container">
-    <app-survey-card />
-    <app-survey-card />
-    <app-survey-card />
+<div class="list">
+    @for (survey of surveys; track survey.id) {
+        <app-survey-card variant="featured" [category]="survey.category" [title]="survey.title" [endsIn]="survey.endsIn" />
+    }
 </div>
     

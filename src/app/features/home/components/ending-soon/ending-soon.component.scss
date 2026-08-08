@@ -13,11 +13,12 @@ p {
     font-size: 32px;
 }
 
-#cards-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    gap: var(--space-md);
-    flex-wrap: wrap;
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+.list app-survey-card {
+  min-width: 0; 
 }
