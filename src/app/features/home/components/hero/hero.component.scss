@@ -1,26 +1,41 @@
 :host {
-    display: flex;
+    display: grid;
     margin: 32px 0;
+    grid-template-columns: auto auto;
+    grid-template-areas: 
+        'title animation'
+        'desc  animation';
+    align-items: center;
+
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+        justify-content: normal;
+        grid-template-areas: 'title' 'animation' 'desc';
+        gap: var(--space-lg);
+    }
 }
 
-#hero{
-    &__left{
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-md);
-        width: 60%;
-        height: auto;
-        & p {
-            font-family: Mulish;
-            color: white;
-            font-size: var(--font-size-xl);
-        }
-        & app-button {
-            font-size: 18px;
-        }
+h1 {
+    grid-area: title;
+}
+
+#desc {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 60%;
+    p {
+        font-family: Mulish;
+        color: white;
+        font-size: var(--font-size-xl);
     }
-    &__right {
-        width: 40%;
-        height: auto;
+    grid-area: desc;
+
+    @media (max-width: 767px) {
+        width: 100%;
     }
+}
+
+img {
+    grid-area: animation;
 }
