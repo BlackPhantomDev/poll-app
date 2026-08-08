@@ -1,1 +1,7 @@
-<p>survey-list works!</p>
+<div class="surveys-container">
+
+    @for (survey of surveys; track survey.id) {
+        <app-survey-card variant="row" [category]="survey.category" [title]="survey.title" [endsIn]="survey.endsIn" />
+    }
+    
+</div>
