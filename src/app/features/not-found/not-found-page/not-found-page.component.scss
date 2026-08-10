@@ -1,0 +1,38 @@
+@use '../../../../styles/tokens' as *;
+@use '../../../../styles/mixins' as *;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary-purple);
+  min-height: 100dvh;
+}
+
+app-header {
+  @include container;
+}
+
+.not-found {
+  @include container(container-narrow);
+  @include centered-flex-box-column;
+  flex: 1;
+  gap: var(--space-md);
+  padding-block-end: var(--layout-header-height);
+  text-align: center;
+}
+
+.not-found__lead {
+  @include display-title;
+  color: var(--color-text-light);
+  font-size: var(--font-size-h4);
+}
+
+.not-found__text {
+  max-width: 44ch;
+  color: var(--color-text-light);
+  font-size: var(--font-size-md);
+}
+
+app-button {
+  margin-block-start: var(--space-sm);
+}
