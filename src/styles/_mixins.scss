@@ -70,3 +70,16 @@
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-tight);
 }
+
+@mixin centered-flex-box-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin centered-flex-box-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
