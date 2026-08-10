@@ -20,7 +20,6 @@
     font-size: var(--font-size-sm);
     transition: background-color var(--duration-fast) var(--easing);
 
-    // Hover nur auf dem inaktiven Tab, sonst überschreibt er die Aktiv-Farbe.
     &:not(.survey-tabs__tab--active):hover {
         background-color: var(--color-filter-btn-hover);
     }

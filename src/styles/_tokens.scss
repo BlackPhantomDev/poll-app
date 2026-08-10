@@ -72,8 +72,6 @@ $font-sizes: (
   '6xl': 89px
 );
 
-// Überschriften skalieren zwischen Mobile-Minimum und Desktop-Zielwert.
-// Der Maximalwert wird jeweils etwa bei Container-Breite erreicht.
 $heading-sizes: (
   'h1': clamp(40px, 8vw, 89px),
   'h2': clamp(32px, 6.5vw, 72px),

@@ -15,19 +15,13 @@
     @include reset-button;
     @include focus-visible;
 
-    // Der Pfeil ist ein eigenes Element, der native Marker muss weg.
     appearance: none;
-
-    // Der Fokus-Ring folgt dem Radius, sonst sitzt er als Rechteck um den Text.
     border-radius: var(--radius-button);
     font-family: var(--font-body);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-bold);
-
-    // Platz, unter dem der Pfeil liegt – der Klick trifft trotzdem das Select.
     padding-inline-end: calc(var(--arrow-size) + var(--arrow-gap));
 
-    // Die aufgeklappte Liste zeichnet das OS auf hellem Grund.
     option {
         background-color: var(--color-bg-light);
         color: var(--color-text-dark);
