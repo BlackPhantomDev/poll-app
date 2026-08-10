@@ -27,7 +27,4 @@ export class HomePageComponent {
   protected readonly tab = signal<SurveyTab>('active');
   protected readonly category = signal<CategorySlug | null>(null);
   protected readonly createOpen = signal(false);
-
-  constructor() {
-  }
 }
