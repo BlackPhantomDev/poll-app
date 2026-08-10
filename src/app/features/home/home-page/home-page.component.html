@@ -1,5 +1,9 @@
 <app-header />
-<app-hero />
+<app-hero (newSurvey)="createOpen.set(true)" />
+
+@if (createOpen()) {
+  <app-survey-create-dialog (closed)="createOpen.set(false)" />
+}
 <app-ending-soon />
 
 <div class="home-page__toolbar">

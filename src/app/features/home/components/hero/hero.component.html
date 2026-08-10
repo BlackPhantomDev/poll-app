@@ -1,7 +1,8 @@
 <h1>Collect Feedback, <br> Unlock Ideas</h1>  
 <div id="desc">
     <p>Create and share surveys in minutes – from team events to workplace culture. Collect opinions, engage your audience, and turn feedback into action.</p>
-    <app-button link="/survey/new">New survey</app-button>
+    <app-button (click)="newSurvey.emit()">New survey</app-button>
+
 </div>  
 
 <img src="/assets/hero-animation-bg.svg" alt="Hero animation">

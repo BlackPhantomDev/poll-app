@@ -7,6 +7,7 @@ import { CategoryFilterComponent } from '../components/category-filter/category-
 import { SurveyTabsComponent, SurveyTab } from '../components/survey-tabs/survey-tabs.component';
 import { CategorySlug } from '../../../core/constants/categories';
 import { SurveyListComponent } from '../components/survey-list/survey-list.component';
+import { SurveyCreateDialogComponent } from '../../survey-create/survey-create-dialog/survey-create-dialog.component';
 
 @Component({
   selector: 'app-home-page',
@@ -16,7 +17,8 @@ import { SurveyListComponent } from '../components/survey-list/survey-list.compo
     EndingSoonComponent,
     CategoryFilterComponent,
     SurveyTabsComponent,
-    SurveyListComponent
+    SurveyListComponent,
+    SurveyCreateDialogComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
@@ -24,4 +26,8 @@ import { SurveyListComponent } from '../components/survey-list/survey-list.compo
 export class HomePageComponent {
   protected readonly tab = signal<SurveyTab>('active');
   protected readonly category = signal<CategorySlug | null>(null);
+  protected readonly createOpen = signal(false);
+
+  constructor() {
+  }
 }
