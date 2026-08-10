@@ -1,7 +1,6 @@
 @use '../../../../../styles/mixins' as *;
 
 .surveys-container {
-    // Feste Zeilenhöhe, damit sich die Höhe für genau 3 Zeilen berechnen lässt.
     --grid-gap: var(--space-md);
     --row-height: 128px;
     --visible-rows: 3;
@@ -11,6 +10,7 @@
     grid-auto-rows: var(--row-height);
 
     margin-top: var(--space-lg);
+    padding-right: 8px;
     gap: var(--grid-gap);
 
     max-height: calc(
