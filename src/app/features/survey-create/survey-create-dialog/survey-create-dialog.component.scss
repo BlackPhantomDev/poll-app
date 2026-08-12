@@ -2,5 +2,94 @@
 @use '../../../../styles/mixins' as *;
 
 dialog {
+    @include card-shape;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin: auto;
+    background-color: var(--color-primary-purple);
+    border: none;
+    width: 80%;
+    max-width: 1200px;
+    min-height: 800px;
+    padding: 32px 48px;
+    &::backdrop {
+        background-color: #0000004d;
+        backdrop-filter: blur(2px);
+    }
+}
+
+.dialog-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.dialog-header__bottom app-button {
+    --button-text-color: var(--color-text-light);
+    --button-bg-color: var(--color-secondary-btn);
+    --button-bg-color-hover: var(--color-secondary-btn-hover);
+}
+
+.dialog-header__title {
+    color: var(--color-dialog-header-orange);
+}
+
+.dialog-header__close-icon {
+    flex-shrink: 0;
+}
+
+.dialog-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    color: var(--color-text-light);
+}
+
+.dialog-main__meta,
+.dialog-main__questions {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    row-gap: var(--space-lg);
+}
+
+
+.dialog-footer {
+    display: flex;
+    justify-content: end;
+}
+
+.dialog-footer__publish-icon {
+    display: flex;
+    width: 0;
+    margin-inline-start: calc(-1 * var(--space-md));
+    overflow: hidden;
+    transition:
+        width var(--duration-base) var(--easing),
+        margin-inline-start var(--duration-base) var(--easing);
+
+    svg {
+        flex-shrink: 0;
+        width: 18px;
+        height: 16px;
+        max-width: none;
+    }
+}
+
+.dialog-footer app-button:hover .dialog-footer__publish-icon,
+.dialog-footer app-button:focus-within .dialog-footer__publish-icon {
+    width: 18px;
+    margin-inline-start: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dialog-footer__publish-icon {
+        transition: none;
+    }
 }
