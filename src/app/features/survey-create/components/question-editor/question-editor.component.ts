@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+
+import { QuestionForm } from '../../survey-create-form';
 
 @Component({
   selector: 'app-question-editor',
@@ -6,4 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './question-editor.component.html',
   styleUrl: './question-editor.component.scss',
 })
-export class QuestionEditorComponent {}
+export class QuestionEditorComponent {
+  readonly group = input.required<QuestionForm>();
+}
