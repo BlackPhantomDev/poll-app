@@ -8,19 +8,20 @@
 .button {
   @include reset-button;
   display: inline-flex;
+  gap: var(--space-md);
   align-items: center;
   justify-content: center;
   padding-inline: var(--space-md);
   padding-block: var(--space-2xs);
   border-radius: var(--radius-button);
-  background-color: var(--color-primary-btn);
-  color: var(--color-text-dark);
+  background-color: var(--button-bg-color, var(--color-primary-btn));
+  color: var(--button-text-color, var(--color-text-dark));
   font-family: var(--font-button);
   font-weight: var(--font-weight-bold);
   transition: background-color var(--duration-fast) var(--easing);
 
   &:hover {
-    background-color: var(--color-primary-btn-hover);
+    background-color: var(--button-bg-color-hover, var(--color-primary-btn-hover));
   }
 
   &:disabled {
