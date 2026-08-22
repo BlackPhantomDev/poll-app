@@ -20,6 +20,16 @@
   padding: var(--survey-card-padding, var(--space-xl));
 }
 
+.card__category {
+  font-size: var(--font-size-sm);
+}
+
+.card__title {
+  font-size: var(--survey-card-title-size, var(--font-size-xl));
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+}
+
 :host([data-variant='featured']) {
   aspect-ratio: 1 / 1;
 
@@ -35,6 +45,11 @@
   --survey-card-fg: var(--color-text-light);
   --survey-card-corner: var(--radius-lg);
   --survey-card-gap: var(--space-2xs);
+  --survey-card-title-size: var(--font-size-lg);
+
+  .card__category {
+    color: var(--color-primary-orange);
+  }
 
   app-badge {
     margin-top: auto;
