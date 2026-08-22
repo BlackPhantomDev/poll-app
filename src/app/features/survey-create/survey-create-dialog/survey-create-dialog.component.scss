@@ -5,18 +5,32 @@ dialog {
     @include card-shape;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     margin: auto;
     background-color: var(--color-primary-purple);
     border: none;
-    width: 80%;
-    max-width: 1200px;
-    min-height: 800px;
-    padding: 32px 48px;
+    width: calc(100% - 2 * var(--space-sm));
+    height: calc(100dvh - 2 * var(--space-sm));
+    padding: var(--space-md) var(--space-sm);
+
     &::backdrop {
         background-color: #0000004d;
         backdrop-filter: blur(2px);
     }
+
+    @include media-up(md) {
+        width: 90%;
+        max-width: 1200px;
+        height: min(800px, calc(100dvh - 2 * var(--space-sm)));
+        padding: 32px 48px;
+    }
+}
+
+.dialog-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    min-height: 0;
 }
 
 .dialog-header {
@@ -45,15 +59,40 @@ dialog {
 }
 
 .dialog-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
     color: var(--color-text-light);
     @include card-shape;
     background-color: var(--color-secondary-purple);
-    padding: 32px 24px;
-    margin: 32px 0 24px 0;
+    padding: var(--space-md) var(--space-sm);
+    margin: var(--space-md) 0;
     flex-grow: 1;
+    min-height: 0;
+
+    @include media-up(md) {
+        padding: 32px 24px;
+        margin: 32px 0 24px 0;
+    }
+}
+
+.dialog-main__scroll {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-lg);
+    flex-grow: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding-right: 8px;
+
+    @include media-up(md) {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--space-2xl);
+    }
+
+    &--scrollbar-hover {
+        cursor: pointer;
+    }
 }
 
 .dialog-main__meta,
@@ -63,6 +102,32 @@ dialog {
     grid-template-columns: subgrid;
     row-gap: var(--space-lg);
     align-items: flex-start;
+}
+
+.dialog-main__questions app-question-editor {
+    grid-column: 1;
+}
+
+.dialog-main__add-question {
+    grid-column: 1;
+    justify-self: start;
+    --button-text-color: var(--color-text-light);
+    --button-bg-color: var(--color-secondary-btn);
+    --button-bg-color-hover: var(--color-secondary-btn-hover);
+
+    @include media-up(md) {
+        grid-column: 2;
+        grid-row: 1;
+    }
+}
+
+.dialog-main__add-label {
+    max-width: 12ch;
+    text-align: start;
+}
+
+.dialog-main__add-icon {
+    flex-shrink: 0;
 }
 
 

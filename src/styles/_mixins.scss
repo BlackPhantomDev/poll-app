@@ -71,6 +71,18 @@
   line-height: var(--line-height-tight);
 }
 
+@mixin form-input {
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--color-input-field-bg);
+  color: var(--color-text-dark);
+  padding: var(--space-2xs) var(--space-sm);
+
+  &:focus {
+    background-color: var(--color-input-field-bg-active);
+  }
+}
+
 @mixin centered-flex-box-row {
   display: flex;
   align-items: center;

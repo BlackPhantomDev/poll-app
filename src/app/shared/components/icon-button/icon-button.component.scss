@@ -1,0 +1,23 @@
+@use '../../../../styles/mixins' as *;
+
+:host {
+  display: inline-flex;
+}
+
+.icon-button {
+  @include reset-button;
+  @include centered-flex-box-row;
+  padding: var(--space-3xs);
+  color: inherit;
+  transition: color var(--duration-fast) var(--easing);
+
+  &:hover {
+    color: var(--color-primary-orange);
+  }
+
+  @include focus-visible;
+
+  svg {
+    flex-shrink: 0;
+  }
+}

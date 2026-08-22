@@ -1,0 +1,52 @@
+@use '../../../../../styles/mixins' as *;
+
+.meta__primary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.meta__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-sm) var(--space-md);
+}
+
+.meta__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+}
+
+.meta__label {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+}
+
+.meta__hint {
+    font-weight: var(--font-weight-regular);
+}
+
+.meta__control {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+
+    input,
+    textarea {
+        @include form-input;
+        flex: 1;
+        min-width: 0;
+    }
+
+    textarea {
+        min-height: 180px;
+        resize: none;
+    }
+}
+
+.meta__control--start {
+    align-items: flex-start;
+}

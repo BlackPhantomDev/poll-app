@@ -1,0 +1,19 @@
+@use '../../../../../styles/mixins' as *;
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.option__letter {
+    min-width: var(--space-md);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+}
+
+.option__input {
+    @include form-input;
+    flex: 1;
+    min-width: 0;
+}
