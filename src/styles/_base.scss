@@ -17,12 +17,38 @@
 html {
   -webkit-text-size-adjust: 100%;
   scrollbar-gutter: stable;
-  scrollbar-color: var(--color-primary-orange) transparent;
   scrollbar-width: thin;
 }
 
 body:has(dialog[open]) {
   overflow: hidden;
+}
+
+body * {
+  scrollbar-color: var(--color-primary-orange) transparent;
+
+  @supports selector(::-webkit-scrollbar) {
+    scrollbar-color: auto;
+    scrollbar-width: auto;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-primary-orange);
+      border-radius: var(--radius-pill);
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+  }
 }
 
 
