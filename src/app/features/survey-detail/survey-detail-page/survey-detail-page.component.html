@@ -1,4 +1,13 @@
-<app-header variant="dark" />
+<app-header variant="dark">
+    <app-button class="detail__create" (click)="createOpen.set(true)">
+        <span>Create survey</span>
+        <app-add-icon class="detail__create-icon" />
+    </app-button>
+</app-header>
+
+@if (createOpen()) {
+    <app-survey-create-dialog (closed)="createOpen.set(false)" />
+}
 
 <main class="detail">
     @if (surveyResource.error()) {
@@ -12,7 +21,7 @@
                 (submitted)="submit($event)" />
         </section>
 
-        <app-survey-results class="detail__results" />
+        <app-survey-results class="detail__results" [results]="results()" />
     } @else {
         <p class="detail__state">Loading survey …</p>
     }

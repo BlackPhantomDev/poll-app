@@ -1,1 +1,13 @@
-<p>result-bar works!</p>
+<span class="bar__letter">{{ option().letter }}</span>
+
+<span
+    class="bar__track"
+    role="meter"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [attr.aria-valuenow]="option().percent"
+    [attr.aria-label]="description()">
+    <span class="bar__fill" [style.width.%]="option().percent"></span>
+</span>
+
+<span class="bar__percent">{{ option().percent }}%</span>

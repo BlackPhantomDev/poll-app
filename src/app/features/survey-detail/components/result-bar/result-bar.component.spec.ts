@@ -13,6 +13,12 @@ describe('ResultBarComponent', () => {
 
     fixture = TestBed.createComponent(ResultBarComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('option', {
+      label: 'Option A',
+      letter: 'A',
+      votes: 3,
+      percent: 60,
+    });
     await fixture.whenStable();
   });
 

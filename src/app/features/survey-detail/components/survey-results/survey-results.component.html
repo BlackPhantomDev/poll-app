@@ -1,5 +1,13 @@
 <h2 class="results__title">Survey results <span class="results__live">LIVE</span></h2>
 
-<p class="results__intro">Results will be shown here after participants complete the survey.</p>
+@for (question of results(); track question.questionId) {
+    <section class="results__question">
+        <h3 class="results__question-title">{{ $index + 1 }}. {{ question.text }}</h3>
 
-<p class="results__empty">There are no answers yet.</p>
+        <div class="results__bars">
+            @for (option of question.options; track option.letter) {
+                <app-result-bar [option]="option" />
+            }
+        </div>
+    </section>
+}

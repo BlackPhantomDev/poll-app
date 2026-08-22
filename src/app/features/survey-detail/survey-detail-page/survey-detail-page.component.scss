@@ -10,6 +10,10 @@ app-header {
     @include container(container-wide);
 }
 
+.detail__create {
+    @include button-reveal-icon('.detail__create-icon');
+}
+
 .detail {
     @include container;
     display: grid;
