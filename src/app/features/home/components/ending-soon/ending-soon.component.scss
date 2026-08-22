@@ -20,5 +20,11 @@ p {
 }
 
 .list app-survey-card {
-  min-width: 0; 
+  min-width: 0;
+}
+
+.ending-soon__empty {
+  min-height: 240px;
+  border: 2px dashed var(--color-secondary-purple);
+  border-radius: var(--radius-md);
 }

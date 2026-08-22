@@ -2,13 +2,21 @@
 <app-hero (newSurvey)="createOpen.set(true)" />
 
 @if (createOpen()) {
-  <app-survey-create-dialog (closed)="createOpen.set(false)" />
+  <app-survey-create-dialog (closed)="onDialogClosed()" />
 }
-<app-ending-soon />
+<app-ending-soon [surveys]="endingSoon()" />
 
 <div class="home-page__toolbar">
     <app-survey-tabs [active]="tab()" (activeChange)="tab.set($event)" />
     <app-category-filter [selected]="category()" (selectedChange)="category.set($event)" />
 </div>
 
-<app-survey-list />
+@if (surveysResource.error()) {
+    <app-empty-state message="Surveys could not be loaded." />
+} @else if (surveysResource.isLoading()) {
+    <app-empty-state message="Loading surveys …" />
+} @else if (visibleSurveys().length === 0) {
+    <app-empty-state message="No surveys here yet." />
+} @else {
+    <app-survey-list [surveys]="visibleSurveys()" />
+}

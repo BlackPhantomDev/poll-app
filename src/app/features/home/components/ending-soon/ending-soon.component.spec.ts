@@ -15,6 +15,7 @@ describe('EndingSoonComponent', () => {
 
     fixture = TestBed.createComponent(EndingSoonComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('surveys', []);
     await fixture.whenStable();
   });
 

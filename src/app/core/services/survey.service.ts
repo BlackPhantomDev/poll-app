@@ -1,7 +1,7 @@
 import { inject, Service } from '@angular/core';
 
 import { SupabaseService } from './supabase.service';
-import { AnswerOption, SurveyWithQuestions } from '../models';
+import { AnswerOption, SurveyListItem, SurveyWithQuestions } from '../models';
 import { CategorySlug } from '../constants/categories';
 
 export interface CreateSurveyQuestion {
@@ -37,6 +37,18 @@ export class SurveyService {
     if (error) throw error;
 
     return data as string;
+  }
+
+  /** Loads every survey for the overview; active, past and ending soon are derived from end_date. */
+  async getSurveys(): Promise<SurveyListItem[]> {
+    const { data, error } = await this.sb
+      .from('surveys')
+      .select('id, title, category, end_date')
+      .order('end_date', { ascending: true, nullsFirst: false });
+
+    if (error) throw error;
+
+    return data as SurveyListItem[];
   }
 
   /** Loads one survey including its questions, ordered by position, in a single request. */

@@ -1,0 +1,8 @@
+@use '../../../../styles/mixins' as *;
+
+:host {
+  @include centered-flex-box-row;
+  min-height: 128px;
+  color: var(--color-text-light);
+  text-align: center;
+}

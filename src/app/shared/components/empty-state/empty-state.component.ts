@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-empty-state',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './empty-state.component.html',
   styleUrl: './empty-state.component.scss',
 })
-export class EmptyStateComponent {}
+export class EmptyStateComponent {
+  readonly message = input('Nothing here yet.');
+}

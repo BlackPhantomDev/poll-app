@@ -16,7 +16,8 @@ app-hero {
 
 app-ending-soon,
 .home-page__toolbar,
-app-survey-list {
+app-survey-list,
+app-empty-state {
     @include container;
 }
 

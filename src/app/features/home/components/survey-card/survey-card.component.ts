@@ -5,6 +5,14 @@ import { BadgeComponent } from '../../../../shared/components/badge/badge.compon
 
 export type SurveyCardVariant = 'featured' | 'row';
 
+/** A survey reduced to the strings a card renders. */
+export interface SurveyCardView {
+  id: string;
+  category: string;
+  title: string;
+  endsIn: string;
+}
+
 @Component({
   selector: 'app-survey-card',
   imports: [BadgeComponent, RouterLink],

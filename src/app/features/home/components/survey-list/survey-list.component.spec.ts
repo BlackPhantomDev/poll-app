@@ -15,6 +15,7 @@ describe('SurveyListComponent', () => {
 
     fixture = TestBed.createComponent(SurveyListComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('surveys', []);
     await fixture.whenStable();
   });
 
