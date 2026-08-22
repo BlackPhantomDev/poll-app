@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestionEditorComponent } from './question-editor.component';
+import { createQuestionForm } from '../../survey-create-form';
 
 describe('QuestionEditorComponent', () => {
   let component: QuestionEditorComponent;
@@ -13,6 +14,8 @@ describe('QuestionEditorComponent', () => {
 
     fixture = TestBed.createComponent(QuestionEditorComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('group', createQuestionForm());
+    fixture.componentRef.setInput('index', 0);
     await fixture.whenStable();
   });
 

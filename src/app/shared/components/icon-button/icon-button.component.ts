@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-icon-button',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './icon-button.component.html',
   styleUrl: './icon-button.component.scss',
 })
-export class IconButtonComponent {}
+export class IconButtonComponent {
+  readonly label = input('Remove');
+}

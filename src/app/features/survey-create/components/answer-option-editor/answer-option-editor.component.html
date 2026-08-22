@@ -1,1 +1,5 @@
-<p>answer-option-editor works!</p>
+<div class="option" [formGroup]="group()">
+    <span class="option__letter">{{ letter() }}.</span>
+    <input class="option__input" type="text" formControlName="label" />
+    <app-icon-button label="Remove answer" (click)="removed.emit()" />
+</div>

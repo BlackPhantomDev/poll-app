@@ -1,1 +1,7 @@
-<p>category-select works!</p>
+<label class="category__label" for="survey-category">Choose category</label>
+<select class="category__select" id="survey-category" formControlName="category">
+    <option [ngValue]="null">Choose category</option>
+    @for (category of categories; track category.slug) {
+        <option [ngValue]="category.slug">{{ category.label }}</option>
+    }
+</select>
