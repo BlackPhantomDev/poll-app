@@ -80,6 +80,19 @@ export class SurveyDetailPageComponent {
     () => this.voted() || this.expired() || this.submitting(),
   );
 
+  /** Tells the visitor why the form is locked; the disabled cursor alone reads as a glitch. */
+  protected readonly notice = computed(() => {
+    if (this.voted()) {
+      return 'You already took part in this survey. Your answers are counted in the results.';
+    }
+
+    if (this.expired()) {
+      return 'This survey has ended. The results stay visible.';
+    }
+
+    return null;
+  });
+
   /**
    * Holds the realtime subscription. Publishing from this page navigates to another
    * /survey/:id and reuses the component, so the channel has to follow the id; the

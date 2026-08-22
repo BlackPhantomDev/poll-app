@@ -13,6 +13,8 @@ import { Answer, Question } from '../../../../core/models';
 export class SurveyParticipateFormComponent {
   readonly questions = input.required<Question[]>();
   readonly disabled = input(false);
+  /** Explains why the form is locked; nothing is shown while participation is open. */
+  readonly notice = input<string | null>(null);
 
   readonly submitted = output<Answer[]>();
 

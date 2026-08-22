@@ -9,9 +9,15 @@
     }
 </div>
 
-<app-button
-    class="participate__submit"
-    [disabled]="disabled() || !complete()"
-    (click)="submit()">
-    Complete survey
-</app-button>
+<div class="participate__footer">
+    @if (notice(); as text) {
+        <p class="participate__notice" role="status">{{ text }}</p>
+    }
+
+    <app-button
+        class="participate__submit"
+        [disabled]="disabled() || !complete()"
+        (click)="submit()">
+        Complete survey
+    </app-button>
+</div>

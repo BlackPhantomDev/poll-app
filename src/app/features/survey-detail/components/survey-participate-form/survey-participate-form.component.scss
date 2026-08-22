@@ -16,8 +16,22 @@
     }
 }
 
+.participate__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.participate__notice {
+    border-radius: var(--radius-button);
+    background-color: var(--color-bg-light);
+    padding: var(--space-2xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-dark);
+}
+
 .participate__submit {
-    align-self: flex-end;
+    margin-inline-start: auto;
     --button-bg-color: var(--color-light-orange);
     --button-bg-color-hover: var(--color-secondary-orange);
 }

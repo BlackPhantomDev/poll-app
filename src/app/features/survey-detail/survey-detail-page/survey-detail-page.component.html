@@ -18,6 +18,7 @@
             <app-survey-participate-form
                 [questions]="surveyResource.value().questions"
                 [disabled]="formDisabled()"
+                [notice]="notice()"
                 (submitted)="submit($event)" />
         </section>
 
