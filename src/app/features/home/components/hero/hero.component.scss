@@ -2,7 +2,7 @@
 
 :host {
     display: grid;
-    margin: 32px 0;
+    margin: var(--space-lg) 0;
     grid-template-columns: auto auto;
     grid-template-areas: 
         'title animation'

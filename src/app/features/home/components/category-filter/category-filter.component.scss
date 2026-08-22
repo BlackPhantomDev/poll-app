@@ -3,7 +3,7 @@
 
 :host {
     --arrow-size: 14px;
-    --arrow-gap: 4px;
+    --arrow-gap: var(--space-3xs);
 
     display: inline-flex;
     align-items: center;

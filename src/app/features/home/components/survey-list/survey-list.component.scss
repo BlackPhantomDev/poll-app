@@ -10,7 +10,7 @@
     grid-auto-rows: var(--row-height);
 
     margin-top: var(--space-lg);
-    padding-right: 8px;
+    padding-right: var(--space-2xs);
     gap: var(--grid-gap);
 
     max-height: calc(
