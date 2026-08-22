@@ -110,6 +110,33 @@
   }
 }
 
+/**
+ * Keeps a projected button icon collapsed until the button is hovered or focused.
+ * The button widens from its content edge, so the layout around it decides which
+ * side stays put. Apply to the app-button host and pass the icon's class.
+ */
+@mixin button-reveal-icon($icon, $size: 24px) {
+  --button-gap: 0;
+
+  #{$icon} {
+    width: 0;
+    margin-inline-start: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      width var(--duration-base) var(--easing),
+      margin-inline-start var(--duration-base) var(--easing),
+      opacity var(--duration-base) var(--easing);
+  }
+
+  &:hover #{$icon},
+  &:has(:focus-visible) #{$icon} {
+    width: $size;
+    margin-inline-start: var(--space-2xs);
+    opacity: 1;
+  }
+}
+
 @mixin centered-flex-box-row {
   display: flex;
   align-items: center;

@@ -1,3 +1,5 @@
+@use '../../../../../styles/mixins' as *;
+
 :host {
     display: grid;
     margin: 32px 0;
@@ -34,6 +36,11 @@ h1 {
     @media (max-width: 767px) {
         width: 100%;
     }
+}
+
+.hero__new-survey {
+    @include button-reveal-icon('.hero__new-survey-icon');
+    align-self: flex-start;
 }
 
 img {

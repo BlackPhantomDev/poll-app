@@ -8,7 +8,7 @@
 .button {
   @include reset-button;
   display: inline-flex;
-  gap: var(--space-md);
+  gap: var(--button-gap, var(--space-md));
   align-items: center;
   justify-content: center;
   padding-inline: var(--space-md);
