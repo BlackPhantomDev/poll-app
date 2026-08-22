@@ -27,8 +27,7 @@ $colors: (
   'filter-btn-active': var(--color-primary-orange),
 
   'survey-status-published': var(--color-primary-orange),
-  'survey-status-darft': var(--color-light-orange),
-  
+
   'input-field-bg': #FEFDFF, 
   'input-field-bg-active': var(--color-light-orange),
 
@@ -52,7 +51,6 @@ $space: (
 );
 
 $radii: (
-  'sm': 8px,
   'button': 10px,
   'md': 16px,
   'lg': 24px,
@@ -69,13 +67,7 @@ $font-sizes: (
   'sm': 14px,
   'base': 16px,
   'md': 18px,
-  'lg': 20px,
-  'xl': 24px,
-  '2xl': 32px,
-  '3xl': 44px,
-  '4xl': 56px,
-  '5xl': 72px,
-  '6xl': 89px
+  'xl': 24px
 );
 
 $heading-sizes: (
@@ -95,15 +87,7 @@ $line-heights: (
 
 $font-weights: (
   'regular': 400,
-  'medium': 500,
-  'semibold': 600,
   'bold': 700
-);
-
-$shadows: (
-  'sm': (0 1px 2px rgba(43, 33, 54, 0.08)),
-  'md': (0 4px 16px rgba(43, 33, 54, 0.1)),
-  'lg': (0 12px 32px rgba(43, 33, 54, 0.14))
 );
 
 $durations: (
@@ -161,10 +145,6 @@ $breakpoints: (
 
     @each $name, $value in $font-weights {
       --font-weight-#{$name}: #{$value};
-    }
-
-    @each $name, $value in $shadows {
-      --shadow-#{$name}: #{$value};
     }
 
     @each $name, $value in $durations {

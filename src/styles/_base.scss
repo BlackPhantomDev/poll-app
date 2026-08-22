@@ -87,8 +87,7 @@ p {
 }
 
 img,
-svg,
-video {
+svg {
   display: block;
   max-width: 100%;
   height: auto;
@@ -109,12 +108,6 @@ button {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-ul,
-ol {
-  padding: 0;
-  list-style: none;
 }
 
 :focus-visible {
