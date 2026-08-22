@@ -10,7 +10,10 @@
 }
 
 app-header,
-app-hero,
+app-hero {
+    @include container(container-wide);
+}
+
 app-ending-soon,
 .home-page__toolbar,
 app-survey-list {

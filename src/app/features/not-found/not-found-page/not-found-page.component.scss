@@ -9,7 +9,7 @@
 }
 
 app-header {
-  @include container;
+  @include container(container-wide);
 }
 
 .not-found {
