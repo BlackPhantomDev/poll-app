@@ -1,0 +1,28 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.survey-header__badge {
+    align-self: flex-start;
+    background-color: var(--color-survey-status-published);
+}
+
+.survey-header__meta {
+    display: flex;
+    gap: var(--space-md);
+    font-size: var(--font-size-sm);
+}
+
+.survey-header__category {
+    margin-inline-start: auto;
+}
+
+.survey-header__title {
+    font-size: var(--font-size-h3);
+}
+
+.survey-header__description {
+    max-width: 60ch;
+}

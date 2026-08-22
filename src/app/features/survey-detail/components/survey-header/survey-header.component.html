@@ -1,1 +1,16 @@
-<p>survey-header works!</p>
+<app-badge class="survey-header__badge">Published</app-badge>
+
+<div class="survey-header__meta">
+    @if (survey().end_date; as endDate) {
+        <span>Ends on {{ endDate | date: 'dd.MM.yyyy' }}</span>
+    }
+    @if (categoryLabel(survey().category); as label) {
+        <span class="survey-header__category">Category: {{ label }}</span>
+    }
+</div>
+
+<h1 class="survey-header__title">{{ survey().title }}</h1>
+
+@if (survey().description; as description) {
+    <p class="survey-header__description">{{ description }}</p>
+}

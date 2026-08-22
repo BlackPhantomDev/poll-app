@@ -1,0 +1,23 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.results__title {
+    font-size: var(--font-size-h4);
+    color: var(--color-text-dark);
+}
+
+.results__live {
+    color: var(--color-primary-orange);
+}
+
+.results__intro {
+    font-weight: var(--font-weight-bold);
+    max-width: 34ch;
+}
+
+.results__empty {
+    margin-top: var(--space-2xl);
+}

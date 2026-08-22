@@ -27,5 +27,9 @@
     flex-direction: column;
     line-height: 15px;
     color: var(--color-primary-orange)
-  } 
+  }
+}
+
+.header--dark .header__logo--name {
+  color: var(--color-text-dark);
 }

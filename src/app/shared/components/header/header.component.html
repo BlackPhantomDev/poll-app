@@ -1,6 +1,6 @@
-<header class="header">
+<header class="header" [class.header--dark]="variant() === 'dark'">
   <a class="header__logo" routerLink="/">
-    <app-logo />
+    <app-logo [variant]="variant()" />
     <div class="header__logo--name">
       <span>Poll</span>
       <span>App</span>

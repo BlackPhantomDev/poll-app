@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { Logo } from '../logo/logo';
+import { Logo, LogoVariant } from '../logo/logo';
 
 @Component({
   selector: 'app-header',
@@ -9,4 +9,6 @@ import { Logo } from '../logo/logo';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  readonly variant = input<LogoVariant>('light');
+}

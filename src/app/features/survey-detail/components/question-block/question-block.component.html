@@ -1,1 +1,22 @@
-<p>question-block works!</p>
+<fieldset class="question" [disabled]="disabled()">
+    <legend class="question__title">{{ index() + 1 }}. {{ question().text }}</legend>
+
+    @if (question().allow_multiple) {
+        <p class="question__hint">More than one answers are possible.</p>
+    }
+
+    <div class="question__options">
+        @for (option of question().options; track option.id) {
+            <label class="question__option">
+                <input
+                    class="question__input"
+                    [type]="question().allow_multiple ? 'checkbox' : 'radio'"
+                    [name]="question().id"
+                    [checked]="selected().includes(option.id)"
+                    (change)="optionToggled.emit(option.id)" />
+                <span class="question__letter">{{ $index | optionLetter }}.</span>
+                <span>{{ option.label }}</span>
+            </label>
+        }
+    </div>
+</fieldset>

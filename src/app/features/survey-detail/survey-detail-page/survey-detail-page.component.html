@@ -1,0 +1,19 @@
+<app-header variant="dark" />
+
+<main class="detail">
+    @if (surveyResource.error()) {
+        <h2 class="detail__state">Survey could not be loaded.</h2>
+    } @else if (surveyResource.hasValue()) {
+        <section class="detail__card">
+            <app-survey-header [survey]="surveyResource.value()" />
+            <app-survey-participate-form
+                [questions]="surveyResource.value().questions"
+                [disabled]="formDisabled()"
+                (submitted)="submit($event)" />
+        </section>
+
+        <app-survey-results class="detail__results" />
+    } @else {
+        <p class="detail__state">Loading survey …</p>
+    }
+</main>

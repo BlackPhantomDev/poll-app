@@ -13,6 +13,7 @@ describe('SurveyParticipateFormComponent', () => {
 
     fixture = TestBed.createComponent(SurveyParticipateFormComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('questions', []);
     await fixture.whenStable();
   });
 

@@ -45,29 +45,7 @@
     cursor: pointer;
 
     input[type='checkbox'] {
-        appearance: none;
-        display: inline-grid;
-        place-content: center;
-        width: 18px;
-        height: 18px;
-        border: 2px solid currentColor;
-        border-radius: 5px;
-        background-color: transparent;
-        cursor: pointer;
-
-        &::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            border-radius: 2px;
-            background-color: var(--color-primary-orange);
-            transform: scale(0);
-            transition: transform var(--duration-fast) var(--easing);
-        }
-
-        &:checked::before {
-            transform: scale(1);
-        }
+        @include selection-control;
     }
 }
 

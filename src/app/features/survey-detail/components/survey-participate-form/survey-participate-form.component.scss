@@ -1,0 +1,23 @@
+@use '../../../../../styles/mixins' as *;
+
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.participate__questions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-lg) var(--space-2xl);
+
+    @include media-up(md) {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+.participate__submit {
+    align-self: flex-end;
+    --button-bg-color: var(--color-light-orange);
+    --button-bg-color-hover: var(--color-secondary-orange);
+}

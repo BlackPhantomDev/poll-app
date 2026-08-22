@@ -1,0 +1,57 @@
+@use '../../../../../styles/mixins' as *;
+
+.question {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.question__title {
+    padding: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+}
+
+.question__hint {
+    font-size: var(--font-size-xs);
+}
+
+.question__options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    margin-top: var(--space-sm);
+}
+
+.question__option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    cursor: pointer;
+}
+
+.question__input {
+    @include selection-control(var(--color-text-dark));
+
+    &[type='radio'] {
+        border-radius: var(--radius-pill);
+
+        &::before {
+            border-radius: var(--radius-pill);
+        }
+    }
+}
+
+.question__letter {
+    font-weight: var(--font-weight-bold);
+}
+
+.question:disabled {
+    .question__option,
+    .question__input {
+        cursor: not-allowed;
+    }
+}

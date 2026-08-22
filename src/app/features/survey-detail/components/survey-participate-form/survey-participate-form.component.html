@@ -1,1 +1,17 @@
-<p>survey-participate-form works!</p>
+<div class="participate__questions">
+    @for (question of questions(); track question.id) {
+        <app-question-block
+            [question]="question"
+            [index]="$index"
+            [selected]="selections()[question.id] ?? []"
+            [disabled]="disabled()"
+            (optionToggled)="toggleOption(question, $event)" />
+    }
+</div>
+
+<app-button
+    class="participate__submit"
+    [disabled]="disabled() || !complete()"
+    (click)="submit()">
+    Complete survey
+</app-button>

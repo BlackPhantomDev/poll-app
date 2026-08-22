@@ -1,9 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+
+import { BadgeComponent } from '../../../../shared/components/badge/badge.component';
+import { categoryLabel } from '../../../../core/constants/categories';
+import { Survey } from '../../../../core/models';
 
 @Component({
   selector: 'app-survey-header',
-  imports: [],
+  imports: [DatePipe, BadgeComponent],
   templateUrl: './survey-header.component.html',
   styleUrl: './survey-header.component.scss',
 })
-export class SurveyHeaderComponent {}
+export class SurveyHeaderComponent {
+  readonly survey = input.required<Survey>();
+
+  protected readonly categoryLabel = categoryLabel;
+}

@@ -11,6 +11,8 @@ $colors: (
   'ending-cards': #faf5fe,
   'ending-cards-hover': #f4e9fb,
 
+  'card-light': #F0EFF3,
+
   'primary-btn': var(--color-secondary-orange),
   'primary-btn-hover': var(--color-primary-orange),
 
@@ -112,6 +114,7 @@ $easing: cubic-bezier(0.2, 0.8, 0.2, 1);
 $layout: (
   'container': 1152px,
   'container-narrow': 704px,
+  'container-wide': 1440px,
   'gutter': 48px,
   'header-height': 96px
 );
