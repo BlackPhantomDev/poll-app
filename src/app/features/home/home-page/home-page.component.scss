@@ -17,8 +17,18 @@ app-hero {
 app-ending-soon,
 .home-page__toolbar,
 app-survey-list,
-app-empty-state {
+.home-page__empty {
     @include container;
+}
+
+.home-page__empty {
+    margin-top: var(--space-lg);
+
+    app-empty-state {
+        min-height: 192px;
+        border: 2px dashed var(--color-secondary-purple);
+        border-radius: var(--radius-md);
+    }
 }
 
 .home-page__toolbar {

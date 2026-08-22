@@ -91,6 +91,22 @@ export class HomePageComponent {
       .map(toCardView);
   });
 
+  protected readonly listMessage = computed(() => {
+    if (this.surveysResource.error()) {
+      return 'Surveys could not be loaded.';
+    }
+
+    if (this.surveysResource.isLoading()) {
+      return 'Loading surveys …';
+    }
+
+    if (this.category() !== null) {
+      return 'No surveys in this category.';
+    }
+
+    return this.tab() === 'past' ? 'No past surveys yet.' : 'No active surveys yet.';
+  });
+
   /** Picks up a survey that was just published while the overview stayed mounted. */
   protected onDialogClosed(): void {
     this.createOpen.set(false);

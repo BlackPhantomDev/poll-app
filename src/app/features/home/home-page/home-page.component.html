@@ -11,12 +11,10 @@
     <app-category-filter [selected]="category()" (selectedChange)="category.set($event)" />
 </div>
 
-@if (surveysResource.error()) {
-    <app-empty-state message="Surveys could not be loaded." />
-} @else if (surveysResource.isLoading()) {
-    <app-empty-state message="Loading surveys …" />
-} @else if (visibleSurveys().length === 0) {
-    <app-empty-state message="No surveys here yet." />
-} @else {
+@if (visibleSurveys().length > 0) {
     <app-survey-list [surveys]="visibleSurveys()" />
+} @else {
+    <div class="home-page__empty">
+        <app-empty-state [message]="listMessage()" />
+    </div>
 }
