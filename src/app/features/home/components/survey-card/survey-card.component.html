@@ -1,4 +1,4 @@
-<div class="ending-soon-card">
+<a class="ending-soon-card" [routerLink]="['/survey', id()]">
     <p class="card__category">
         {{category ()}}
     </p>
@@ -7,4 +7,4 @@
     </p>
 
     <app-badge>{{endsIn ()}}</app-badge>
-</div>
+</a>

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { EndingSoonComponent } from './ending-soon.component';
 
@@ -9,6 +10,7 @@ describe('EndingSoonComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EndingSoonComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EndingSoonComponent);

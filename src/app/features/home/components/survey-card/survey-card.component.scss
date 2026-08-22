@@ -5,6 +5,11 @@
   background-color: var(--survey-card-bg, var(--color-ending-cards));
   color: var(--survey-card-fg, var(--color-text-dark));
   @include card-shape(top-right, var(--survey-card-corner, var(--radius-corner)));
+  transition: background-color var(--duration-fast) var(--easing);
+}
+
+:host(:hover) {
+  background-color: var(--survey-card-bg-hover, var(--color-ending-cards-hover));
 }
 
 .ending-soon-card {
@@ -26,6 +31,7 @@
 
 :host([data-variant='row']) {
   --survey-card-bg: var(--color-secondary-purple);
+  --survey-card-bg-hover: var(--color-hover-purple);
   --survey-card-fg: var(--color-text-light);
   --survey-card-corner: var(--radius-lg);
   --survey-card-gap: var(--space-2xs);
