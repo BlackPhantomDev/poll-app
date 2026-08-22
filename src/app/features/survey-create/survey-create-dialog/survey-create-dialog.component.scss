@@ -104,21 +104,11 @@ dialog {
     align-items: flex-start;
 }
 
-.dialog-main__questions app-question-editor {
-    grid-column: 1;
-}
-
 .dialog-main__add-question {
-    grid-column: 1;
     justify-self: start;
     --button-text-color: var(--color-text-light);
     --button-bg-color: var(--color-secondary-btn);
     --button-bg-color-hover: var(--color-secondary-btn-hover);
-
-    @include media-up(md) {
-        grid-column: 2;
-        grid-row: 1;
-    }
 }
 
 .dialog-main__add-label {
