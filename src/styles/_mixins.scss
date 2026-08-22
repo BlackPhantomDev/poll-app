@@ -90,7 +90,7 @@
   width: 18px;
   height: 18px;
   border: 2px solid $border-color;
-  border-radius: 5px;
+  border-radius: 0;
   background-color: transparent;
   cursor: pointer;
   flex-shrink: 0;
@@ -99,7 +99,7 @@
     content: '';
     width: 10px;
     height: 10px;
-    border-radius: 2px;
+    border-radius: 0;
     background-color: var(--color-primary-orange);
     transform: scale(0);
     transition: transform var(--duration-fast) var(--easing);
