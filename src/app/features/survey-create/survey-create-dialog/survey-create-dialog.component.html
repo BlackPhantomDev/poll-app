@@ -1,4 +1,4 @@
-<dialog #dialogEl (close)="closed.emit()">
+<dialog #dialogEl (close)="closed.emit()" (cancel)="onCancel($event)">
     <form class="dialog-form" [formGroup]="form" (ngSubmit)="publish()">
         <header class="dialog-header">
             <div class="dialog-header__top">
@@ -41,7 +41,7 @@
             </div>
         </main>
         <footer class="dialog-footer">
-            <app-button type="submit">
+            <app-button type="submit" [disabled]="form.invalid || publishing()">
                 <span>Publish</span>
                 <span class="dialog-footer__publish-icon" aria-hidden="true">
                     <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,4 +51,14 @@
             </app-button>
         </footer>
     </form>
+
+    <dialog #confirmEl class="confirm" aria-labelledby="confirm-title">
+        <h4 class="confirm__title" id="confirm-title">Discard your survey?</h4>
+        <p>Your questions and answers will be lost.</p>
+
+        <div class="confirm__actions">
+            <app-button class="confirm__discard" (click)="discard()">Discard</app-button>
+            <app-button (click)="keepEditing()">Keep editing</app-button>
+        </div>
+    </dialog>
 </dialog>

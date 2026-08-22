@@ -1,9 +1,8 @@
 @use '../../../../styles/tokens' as *;
 @use '../../../../styles/mixins' as *;
 
-dialog {
+:host > dialog {
     @include card-shape;
-    display: flex;
     flex-direction: column;
     margin: auto;
     background-color: var(--color-primary-purple);
@@ -11,6 +10,10 @@ dialog {
     width: calc(100% - 2 * var(--space-sm));
     height: calc(100dvh - 2 * var(--space-sm));
     padding: var(--space-md) var(--space-sm);
+
+    &[open] {
+        display: flex;
+    }
 
     &::backdrop {
         background-color: #0000004d;
@@ -31,6 +34,40 @@ dialog {
     justify-content: space-between;
     flex: 1;
     min-height: 0;
+}
+
+.confirm {
+    @include card-shape(top-right, var(--radius-lg));
+    flex-direction: column;
+    gap: var(--space-2xs);
+    margin: auto;
+    max-width: 420px;
+    border: none;
+    background-color: var(--color-secondary-purple);
+    color: var(--color-text-light);
+    padding: var(--space-lg);
+
+    &[open] {
+        display: flex;
+    }
+}
+
+.confirm__title {
+    color: var(--color-dialog-header-orange);
+    font-size: var(--font-size-h5);
+}
+
+.confirm__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.confirm__discard {
+    --button-text-color: var(--color-text-light);
+    --button-bg-color: var(--color-secondary-btn);
+    --button-bg-color-hover: var(--color-secondary-btn-hover);
 }
 
 .dialog-header {

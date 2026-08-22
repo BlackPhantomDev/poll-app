@@ -1,5 +1,5 @@
 <div class="option" [formGroup]="group()">
-    <span class="option__letter">{{ letter() }}.</span>
+    <span class="option__letter">{{ index() | optionLetter }}.</span>
     <input class="option__input" type="text" formControlName="label" />
     <app-icon-button label="Remove answer" (click)="removed.emit()" />
 </div>
