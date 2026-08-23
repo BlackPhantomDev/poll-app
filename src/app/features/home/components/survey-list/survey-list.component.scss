@@ -6,19 +6,25 @@
     --visible-rows: 3;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: var(--row-height);
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
 
     margin-top: var(--space-lg);
-    padding-right: var(--space-2xs);
     gap: var(--grid-gap);
 
-    max-height: calc(
-        var(--visible-rows) * var(--row-height) +
-        (var(--visible-rows) - 1) * var(--grid-gap)
-    );
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-
     --survey-card-padding: var(--space-md);
+
+    /* The page itself scrolls on phones; the inner scroll area starts with two columns. */
+    @include media-up(sm) {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: var(--row-height);
+        padding-right: var(--space-2xs);
+
+        max-height: calc(
+            var(--visible-rows) * var(--row-height) +
+            (var(--visible-rows) - 1) * var(--grid-gap)
+        );
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+    }
 }

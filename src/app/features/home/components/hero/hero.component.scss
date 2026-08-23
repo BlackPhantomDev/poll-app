@@ -3,17 +3,17 @@
 :host {
     display: grid;
     margin: var(--space-lg) 0;
-    grid-template-columns: auto auto;
-    grid-template-areas: 
-        'title animation'
-        'desc  animation';
+    grid-template-columns: 1fr;
+    grid-template-areas: 'title' 'animation' 'desc';
+    gap: var(--space-lg);
     align-items: center;
 
-    @media (max-width: 767px) {
-        grid-template-columns: 1fr;
-        justify-content: normal;
-        grid-template-areas: 'title' 'animation' 'desc';
-        gap: var(--space-lg);
+    @include media-up(md) {
+        grid-template-columns: auto auto;
+        grid-template-areas:
+            'title animation'
+            'desc  animation';
+        gap: 0;
     }
 }
 
@@ -25,7 +25,7 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    width: 60%;
+    width: 100%;
     p {
         font-family: Mulish;
         color: white;
@@ -33,14 +33,18 @@ h1 {
     }
     grid-area: desc;
 
-    @media (max-width: 767px) {
-        width: 100%;
+    @include media-up(md) {
+        width: 60%;
     }
 }
 
 .hero__new-survey {
     @include button-reveal-icon('.hero__new-survey-icon');
-    align-self: flex-start;
+    align-self: center;
+
+    @include media-up(md) {
+        align-self: flex-start;
+    }
 }
 
 img {

@@ -1,3 +1,5 @@
+@use '../../../../../styles/mixins' as *;
+
 :host {
     display: flex;
     flex-direction: column;
@@ -13,14 +15,36 @@ p {
     font-size: 32px;
 }
 
+/* On phones the cards stay card-sized and scroll sideways, bleeding to the screen edge
+   so the next one peeks out. From sm up they wrap into the normal grid. */
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: 72%;
   gap: var(--space-md);
+
+  margin-inline: calc(-1 * var(--layout-gutter));
+  padding-inline: var(--layout-gutter);
+  padding-block-end: var(--space-2xs);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  @include media-up(sm) {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+    margin-inline: 0;
+    padding-inline: 0;
+    padding-block-end: 0;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
 }
 
 .list app-survey-card {
   min-width: 0;
+  scroll-snap-align: start;
 }
 
 .ending-soon__state {
