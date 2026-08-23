@@ -37,6 +37,9 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
 
   protected readonly publishing = signal(false);
 
+  /** Set when the RPC failed; the dialog stays open so nothing typed is lost. */
+  protected readonly publishError = signal<string | null>(null);
+
   protected get questions(): FormArray<QuestionForm> {
     return this.form.controls.questions;
   }
@@ -83,6 +86,7 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
     }
 
     this.publishing.set(true);
+    this.publishError.set(null);
 
     try {
       const { questions, ...meta } = this.form.getRawValue();
@@ -100,6 +104,8 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
       this.form.markAsPristine();
       this.dialogEl().nativeElement.close();
       await this.router.navigate(['/survey', surveyId]);
+    } catch {
+      this.publishError.set('The survey could not be published. Please try again.');
     } finally {
       this.publishing.set(false);
     }

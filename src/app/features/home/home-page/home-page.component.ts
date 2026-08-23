@@ -9,6 +9,8 @@ import { CategorySlug, categoryLabel } from '../../../core/constants/categories'
 import { SurveyListComponent } from '../components/survey-list/survey-list.component';
 import { SurveyCardView } from '../components/survey-card/survey-card.component';
 import { EmptyStateComponent } from '../../../shared/components/empty-state/empty-state.component';
+import { LoadingSpinnerComponent } from '../../../shared/components/loading-spinner/loading-spinner.component';
+import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { SurveyCreateDialogComponent } from '../../survey-create/survey-create-dialog/survey-create-dialog.component';
 import { SurveyService } from '../../../core/services/survey.service';
 import { SurveyListItem } from '../../../core/models';
@@ -52,6 +54,8 @@ function toCardView(survey: SurveyListItem): SurveyCardView {
     SurveyTabsComponent,
     SurveyListComponent,
     EmptyStateComponent,
+    LoadingSpinnerComponent,
+    ButtonComponent,
     SurveyCreateDialogComponent
   ],
   templateUrl: './home-page.component.html',
@@ -91,15 +95,23 @@ export class HomePageComponent {
       .map(toCardView);
   });
 
+  /**
+   * Only blanks the page while there is nothing to show. A reload over an existing
+   * list keeps the cards up, a retry after a failure still gets the spinner.
+   */
+  protected readonly loading = computed(
+    () => this.surveysResource.isLoading() && !this.surveysResource.hasValue(),
+  );
+
+  protected readonly failed = computed(
+    () => !this.surveysResource.isLoading() && this.surveysResource.error() !== undefined,
+  );
+
+  protected readonly endingSoonMessage = computed(() =>
+    this.failed() ? 'Surveys could not be loaded.' : 'No surveys ending soon.',
+  );
+
   protected readonly listMessage = computed(() => {
-    if (this.surveysResource.error()) {
-      return 'Surveys could not be loaded.';
-    }
-
-    if (this.surveysResource.isLoading()) {
-      return 'Loading surveys …';
-    }
-
     if (this.category() !== null) {
       return 'No surveys in this category.';
     }
@@ -110,6 +122,10 @@ export class HomePageComponent {
   /** Picks up a survey that was just published while the overview stayed mounted. */
   protected onDialogClosed(): void {
     this.createOpen.set(false);
+    this.surveysResource.reload();
+  }
+
+  protected retry(): void {
     this.surveysResource.reload();
   }
 }

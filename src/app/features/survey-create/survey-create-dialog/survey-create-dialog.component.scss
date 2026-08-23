@@ -160,7 +160,14 @@
 
 .dialog-footer {
     display: flex;
+    align-items: center;
     justify-content: end;
+    gap: var(--space-md);
+}
+
+.dialog-footer__error {
+    @include inline-error;
+    margin-inline-end: auto;
 }
 
 .dialog-footer__publish-icon {

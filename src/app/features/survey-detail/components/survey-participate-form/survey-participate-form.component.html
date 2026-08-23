@@ -10,7 +10,9 @@
 </div>
 
 <div class="participate__footer">
-    @if (notice(); as text) {
+    @if (error(); as text) {
+        <p class="participate__notice participate__notice--error" role="alert">{{ text }}</p>
+    } @else if (notice(); as text) {
         <p class="participate__notice" role="status">{{ text }}</p>
     }
 

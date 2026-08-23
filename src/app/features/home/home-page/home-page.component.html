@@ -4,14 +4,24 @@
 @if (createOpen()) {
   <app-survey-create-dialog (closed)="onDialogClosed()" />
 }
-<app-ending-soon [surveys]="endingSoon()" />
+<app-ending-soon
+    [surveys]="endingSoon()"
+    [loading]="loading()"
+    [message]="endingSoonMessage()" />
 
 <div class="home-page__toolbar">
     <app-survey-tabs [active]="tab()" (activeChange)="tab.set($event)" />
     <app-category-filter [selected]="category()" (selectedChange)="category.set($event)" />
 </div>
 
-@if (visibleSurveys().length > 0) {
+@if (loading()) {
+    <app-loading-spinner class="home-page__loading" label="Loading surveys …" />
+} @else if (failed()) {
+    <div class="home-page__error" role="alert">
+        <p>Surveys could not be loaded.</p>
+        <app-button (click)="retry()">Try again</app-button>
+    </div>
+} @else if (visibleSurveys().length > 0) {
     <app-survey-list [surveys]="visibleSurveys()" />
 } @else {
     <div class="home-page__empty">

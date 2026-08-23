@@ -1,7 +1,13 @@
+@use '../../../../../styles/mixins' as *;
+
 :host {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+}
+
+.results__error {
+    @include inline-error;
 }
 
 .results__title {

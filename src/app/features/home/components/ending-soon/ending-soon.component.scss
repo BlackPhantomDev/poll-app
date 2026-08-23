@@ -23,8 +23,9 @@ p {
   min-width: 0;
 }
 
-.ending-soon__empty {
+.ending-soon__state {
   min-height: 240px;
   border: 2px dashed var(--color-secondary-purple);
   border-radius: var(--radius-md);
+  color: var(--color-text-light);
 }

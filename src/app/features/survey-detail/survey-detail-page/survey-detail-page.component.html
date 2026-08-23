@@ -10,8 +10,13 @@
 }
 
 <main class="detail">
-    @if (surveyResource.error()) {
-        <h2 class="detail__state">Survey could not be loaded.</h2>
+    @if (surveyResource.isLoading()) {
+        <app-loading-spinner class="detail__state" label="Loading survey …" />
+    } @else if (surveyResource.error()) {
+        <div class="detail__state detail__error" role="alert">
+            <h2>Survey could not be loaded.</h2>
+            <app-button (click)="retry()">Try again</app-button>
+        </div>
     } @else if (surveyResource.hasValue()) {
         <section class="detail__card">
             <app-survey-header [survey]="surveyResource.value()" />
@@ -19,11 +24,13 @@
                 [questions]="surveyResource.value().questions"
                 [disabled]="formDisabled()"
                 [notice]="notice()"
+                [error]="submitError()"
                 (submitted)="submit($event)" />
         </section>
 
-        <app-survey-results class="detail__results" [results]="results()" />
-    } @else {
-        <p class="detail__state">Loading survey …</p>
+        <app-survey-results
+            class="detail__results"
+            [results]="results()"
+            [error]="resultsError()" />
     }
 </main>

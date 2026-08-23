@@ -1,0 +1,36 @@
+@use '../../../../styles/mixins' as *;
+
+:host {
+  @include centered-flex-box-row;
+  min-height: 128px;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--font-size-sm);
+}
+
+.spinner__ring {
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-pill);
+  animation: spinner-ring-spin calc(var(--duration-slow) * 2) linear infinite;
+}
+
+@keyframes spinner-ring-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner__ring {
+    border-top-color: currentColor;
+    opacity: 0.5;
+    animation: none;
+  }
+}

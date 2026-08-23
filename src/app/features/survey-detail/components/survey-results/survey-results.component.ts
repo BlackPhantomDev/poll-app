@@ -11,4 +11,6 @@ import { QuestionResult } from '../../../../core/models';
 })
 export class SurveyResultsComponent {
   readonly results = input.required<QuestionResult[]>();
+  /** Warns that the bars below are missing votes; without it zeros read as "no votes". */
+  readonly error = input<string | null>(null);
 }

@@ -83,6 +83,20 @@
   }
 }
 
+/**
+ * Failure message sitting next to the control that failed. The palette has no
+ * dedicated error colour yet, so this leans on the strongest accent instead.
+ */
+@mixin inline-error {
+  border-inline-start: 3px solid var(--color-dialog-header-orange);
+  border-radius: var(--radius-button);
+  background-color: var(--color-bg-light);
+  padding: var(--space-2xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-dark);
+}
+
 @mixin selection-control($border-color: currentColor) {
   appearance: none;
   display: inline-grid;

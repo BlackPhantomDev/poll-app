@@ -15,6 +15,8 @@ export class SurveyParticipateFormComponent {
   readonly disabled = input(false);
   /** Explains why the form is locked; nothing is shown while participation is open. */
   readonly notice = input<string | null>(null);
+  /** Reports a failed submit; takes the notice slot because the form is open again. */
+  readonly error = input<string | null>(null);
 
   readonly submitted = output<Answer[]>();
 

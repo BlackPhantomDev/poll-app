@@ -17,6 +17,8 @@ app-hero {
 app-ending-soon,
 .home-page__toolbar,
 app-survey-list,
+.home-page__loading,
+.home-page__error,
 .home-page__empty {
     @include container;
 }
@@ -29,6 +31,23 @@ app-survey-list,
         border: 2px dashed var(--color-secondary-purple);
         border-radius: var(--radius-md);
     }
+}
+
+.home-page__loading {
+    margin-top: var(--space-lg);
+    min-height: 192px;
+    color: var(--color-text-light);
+}
+
+.home-page__error {
+    @include centered-flex-box-column;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    min-height: 192px;
+    border: 2px dashed var(--color-secondary-purple);
+    border-radius: var(--radius-md);
+    color: var(--color-text-light);
+    text-align: center;
 }
 
 .home-page__toolbar {

@@ -30,6 +30,11 @@
     color: var(--color-text-dark);
 }
 
+.participate__notice--error {
+    border-inline-start: 3px solid var(--color-dialog-header-orange);
+    font-weight: var(--font-weight-bold);
+}
+
 .participate__submit {
     margin-inline-start: auto;
     --button-bg-color: var(--color-light-orange);

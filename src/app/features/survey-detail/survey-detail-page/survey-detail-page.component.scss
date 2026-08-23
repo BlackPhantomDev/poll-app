@@ -48,3 +48,8 @@ app-header {
     text-align: center;
     color: var(--color-text-dark);
 }
+
+.detail__error {
+    @include centered-flex-box-column;
+    gap: var(--space-md);
+}

@@ -16,6 +16,7 @@ import { SurveyCreateDialogComponent } from '../../survey-create/survey-create-d
 import { SurveyHeaderComponent } from '../components/survey-header/survey-header.component';
 import { SurveyParticipateFormComponent } from '../components/survey-participate-form/survey-participate-form.component';
 import { SurveyResultsComponent } from '../components/survey-results/survey-results.component';
+import { LoadingSpinnerComponent } from '../../../shared/components/loading-spinner/loading-spinner.component';
 import { SurveyService } from '../../../core/services/survey.service';
 import { ResponseService } from '../../../core/services/response.service';
 import { ResultsService, ResponseVotes } from '../../../core/services/results.service';
@@ -31,6 +32,7 @@ import { Answer } from '../../../core/models';
     SurveyHeaderComponent,
     SurveyParticipateFormComponent,
     SurveyResultsComponent,
+    LoadingSpinnerComponent,
   ],
   templateUrl: './survey-detail-page.component.html',
   styleUrl: './survey-detail-page.component.scss',
@@ -70,6 +72,19 @@ export class SurveyDetailPageComponent {
 
   protected readonly submitting = signal(false);
 
+  /** Set when a participation could not be written; cleared on the next attempt. */
+  protected readonly submitError = signal<string | null>(null);
+
+  /**
+   * Without this the results silently render every bar at zero, which reads as
+   * "nobody voted yet" instead of "the count is missing".
+   */
+  protected readonly resultsError = computed(() =>
+    this.responsesResource.error() !== undefined
+      ? 'Results could not be loaded and may be incomplete.'
+      : null,
+  );
+
   protected readonly expired = computed(() => {
     const endDate = this.surveyResource.hasValue() ? this.surveyResource.value().end_date : null;
 
@@ -107,14 +122,23 @@ export class SurveyDetailPageComponent {
   /** Stores one participation row and locks the form for this browser. */
   protected async submit(answers: Answer[]): Promise<void> {
     this.submitting.set(true);
+    this.submitError.set(null);
 
     try {
       await this.responseService.submitResponse(this.id(), answers);
       this.responseService.markVoted(this.id());
       this.voted.set(true);
+    } catch {
+      // The form stays open with the selections intact so the visitor can retry.
+      this.submitError.set('Your answers could not be submitted. Please try again.');
     } finally {
       this.submitting.set(false);
     }
+  }
+
+  protected retry(): void {
+    this.surveyResource.reload();
+    this.responsesResource.reload();
   }
 
   /** Adds a participation from realtime; rows already counted are ignored. */

@@ -1,5 +1,9 @@
 <h2 class="results__title">Survey results <span class="results__live">LIVE</span></h2>
 
+@if (error(); as text) {
+    <p class="results__error" role="status">{{ text }}</p>
+}
+
 @for (question of results(); track question.questionId) {
     <section class="results__question">
         <h3 class="results__question-title">{{ $index + 1 }}. {{ question.text }}</h3>

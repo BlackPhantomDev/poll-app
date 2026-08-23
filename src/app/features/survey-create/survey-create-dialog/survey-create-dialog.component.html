@@ -41,6 +41,10 @@
             </div>
         </main>
         <footer class="dialog-footer">
+            @if (publishError(); as text) {
+                <p class="dialog-footer__error" role="alert">{{ text }}</p>
+            }
+
             <app-button type="submit" [disabled]="form.invalid || publishing()">
                 <span>Publish</span>
                 <span class="dialog-footer__publish-icon" aria-hidden="true">
