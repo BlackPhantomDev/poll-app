@@ -31,7 +31,12 @@
 }
 
 :host([data-variant='featured']) {
+  --survey-card-padding: var(--space-md);
   aspect-ratio: 1 / 1;
+
+  @include media-up(sm) {
+    --survey-card-padding: var(--space-xl);
+  }
 
   app-badge {
     margin-top: auto;
