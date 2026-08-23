@@ -18,8 +18,13 @@
 
 .participate__footer {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: var(--space-md);
+
+    @include media-up(sm) {
+        flex-direction: row;
+        align-items: center;
+    }
 }
 
 .participate__notice {
@@ -36,7 +41,11 @@
 }
 
 .participate__submit {
-    margin-inline-start: auto;
+    align-self: flex-end;
     --button-bg-color: var(--color-light-orange);
     --button-bg-color-hover: var(--color-secondary-orange);
+
+    @include media-up(sm) {
+        margin-inline-start: auto;
+    }
 }
