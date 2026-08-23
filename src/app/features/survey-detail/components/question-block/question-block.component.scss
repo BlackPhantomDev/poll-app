@@ -35,14 +35,6 @@
 
 .question__input {
     @include selection-control(var(--color-text-dark));
-
-    &[type='radio'] {
-        border-radius: var(--radius-pill);
-
-        &::before {
-            border-radius: var(--radius-pill);
-        }
-    }
 }
 
 .question__letter {
