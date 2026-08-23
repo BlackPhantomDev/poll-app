@@ -4,7 +4,7 @@ import { FormArray, ReactiveFormsModule } from '@angular/forms';
 import { AnswerOptionEditorComponent } from '../answer-option-editor/answer-option-editor.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { IconButtonComponent } from '../../../../shared/components/icon-button/icon-button.component';
-import { AnswerOptionForm, createAnswerOptionForm, MIN_OPTIONS, QuestionForm } from '../../survey-create-form';
+import { AnswerOptionForm, createAnswerOptionForm, MAX_QUESTION_LENGTH, MIN_OPTIONS, QuestionForm } from '../../survey-create-form';
 
 @Component({
   selector: 'app-question-editor',
@@ -16,6 +16,8 @@ export class QuestionEditorComponent {
   readonly group = input.required<QuestionForm>();
   readonly index = input.required<number>();
   readonly removed = output<void>();
+
+  protected readonly maxQuestion = MAX_QUESTION_LENGTH;
 
   protected get options(): FormArray<AnswerOptionForm> {
     return this.group().controls.options;

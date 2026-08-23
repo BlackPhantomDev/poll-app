@@ -2,7 +2,7 @@
     <div class="meta__field">
         <label class="meta__label" for="survey-name">Survey name</label>
         <div class="meta__control">
-            <input id="survey-name" type="text" formControlName="title" />
+            <input id="survey-name" type="text" formControlName="title" [maxlength]="maxTitle" />
             <app-icon-button label="Clear survey name" (click)="clear('title')" />
         </div>
     </div>
@@ -22,7 +22,7 @@
 <div class="meta__field">
     <label class="meta__label" for="survey-description">Describing text <span class="meta__hint">(optional)</span></label>
     <div class="meta__control meta__control--start">
-        <textarea id="survey-description" formControlName="description"></textarea>
+        <textarea id="survey-description" formControlName="description" [maxlength]="maxDescription"></textarea>
         <app-icon-button label="Clear describing text" (click)="clear('description')" />
     </div>
 </div>

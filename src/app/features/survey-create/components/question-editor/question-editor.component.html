@@ -4,7 +4,7 @@
         <app-icon-button label="Remove question" (click)="removed.emit()" />
     </div>
 
-    <input class="question__text" type="text" formControlName="text" placeholder="Which date would work best for you?" />
+    <input class="question__text" type="text" formControlName="text" [maxlength]="maxQuestion" placeholder="Which date would work best for you?" />
 
     <div class="question__answers">
         <span class="question__answers-label">Answers</span>

@@ -92,12 +92,17 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
       const { questions, ...meta } = this.form.getRawValue();
       const surveyId = await this.surveyService.createSurvey({
         ...meta,
+        title: meta.title.trim(),
+        description: meta.description.trim(),
         questions: questions.map((question, index) => ({
           id: question.id,
-          text: question.text,
+          text: question.text.trim(),
           position: index,
           allow_multiple: question.allowMultiple,
-          options: question.options,
+          options: question.options.map((option) => ({
+            id: option.id,
+            label: option.label.trim(),
+          })),
         })),
       });
 
