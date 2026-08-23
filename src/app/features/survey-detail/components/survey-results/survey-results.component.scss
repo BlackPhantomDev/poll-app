@@ -10,6 +10,56 @@
     @include inline-error;
 }
 
+.results__toggle {
+    @include reset-button;
+    @include focus-visible;
+
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--space-3xs);
+    font-family: var(--font-button);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-dark);
+}
+
+.results__toggle-icon {
+    width: 10px;
+    transition: transform var(--duration-fast) var(--easing);
+}
+
+.results__toggle-icon--open {
+    transform: rotate(180deg);
+}
+
+.results__body {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.results__body--open {
+    display: flex;
+}
+
+/* The toggle is a phone affordance; wider screens always show the results. */
+@include media-up(sm) {
+    .results__toggle {
+        display: none;
+    }
+
+    .results__body {
+        display: flex;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .results__toggle-icon {
+        transition: none;
+    }
+}
+
 .results__title {
     margin-bottom: var(--space-2xs);
     font-size: var(--font-size-h4);

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 
 import { ResultBarComponent } from '../result-bar/result-bar.component';
 import { QuestionResult } from '../../../../core/models';
@@ -13,4 +13,11 @@ export class SurveyResultsComponent {
   readonly results = input.required<QuestionResult[]>();
   /** Warns that the bars below are missing votes; without it zeros read as "no votes". */
   readonly error = input<string | null>(null);
+
+  /** Only drives the phone layout; from sm up the styles keep the results open regardless. */
+  protected readonly expanded = signal(false);
+
+  protected toggle(): void {
+    this.expanded.update((open) => !open);
+  }
 }

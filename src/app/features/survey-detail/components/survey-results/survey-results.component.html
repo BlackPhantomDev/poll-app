@@ -1,17 +1,35 @@
-<h2 class="results__title">Survey results <span class="results__live">LIVE</span></h2>
+<button
+    type="button"
+    class="results__toggle"
+    aria-controls="survey-results-body"
+    [attr.aria-expanded]="expanded()"
+    (click)="toggle()">
+    {{ expanded() ? 'Close results' : 'See results' }}
+    <svg
+        class="results__toggle-icon"
+        [class.results__toggle-icon--open]="expanded()"
+        viewBox="0 0 10 6"
+        aria-hidden="true">
+        <path d="M0 0h10L5 6z" fill="currentColor" />
+    </svg>
+</button>
 
-@if (error(); as text) {
-    <p class="results__error" role="status">{{ text }}</p>
-}
+<div id="survey-results-body" class="results__body" [class.results__body--open]="expanded()">
+    <h2 class="results__title">Survey results <span class="results__live">LIVE</span></h2>
 
-@for (question of results(); track question.questionId) {
-    <section class="results__question">
-        <h3 class="results__question-title">{{ $index + 1 }}. {{ question.text }}</h3>
+    @if (error(); as text) {
+        <p class="results__error" role="status">{{ text }}</p>
+    }
 
-        <div class="results__bars">
-            @for (option of question.options; track option.letter) {
-                <app-result-bar [option]="option" />
-            }
-        </div>
-    </section>
-}
+    @for (question of results(); track question.questionId) {
+        <section class="results__question">
+            <h3 class="results__question-title">{{ $index + 1 }}. {{ question.text }}</h3>
+
+            <div class="results__bars">
+                @for (option of question.options; track option.letter) {
+                    <app-result-bar [option]="option" />
+                }
+            </div>
+        </section>
+    }
+</div>
