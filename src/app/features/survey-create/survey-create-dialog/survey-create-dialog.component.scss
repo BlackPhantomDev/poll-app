@@ -172,12 +172,6 @@
 
 .dialog-footer__publish-icon {
     display: flex;
-    width: 0;
-    margin-inline-start: calc(-1 * var(--space-md));
-    overflow: hidden;
-    transition:
-        width var(--duration-base) var(--easing),
-        margin-inline-start var(--duration-base) var(--easing);
 
     svg {
         flex-shrink: 0;
@@ -187,10 +181,22 @@
     }
 }
 
-.dialog-footer app-button:hover .dialog-footer__publish-icon,
-.dialog-footer app-button:focus-within .dialog-footer__publish-icon {
-    width: 18px;
-    margin-inline-start: 0;
+/* Same as the reveal mixin: without hover the icon has to stay visible. */
+@media (hover: hover) {
+    .dialog-footer__publish-icon {
+        width: 0;
+        margin-inline-start: calc(-1 * var(--space-md));
+        overflow: hidden;
+        transition:
+            width var(--duration-base) var(--easing),
+            margin-inline-start var(--duration-base) var(--easing);
+    }
+
+    .dialog-footer app-button:hover .dialog-footer__publish-icon,
+    .dialog-footer app-button:focus-within .dialog-footer__publish-icon {
+        width: 18px;
+        margin-inline-start: 0;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
