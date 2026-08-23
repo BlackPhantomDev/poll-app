@@ -43,7 +43,6 @@
     display: flex;
 }
 
-/* The toggle is a phone affordance; wider screens always show the results. */
 @include media-up(sm) {
     .results__toggle {
         display: none;

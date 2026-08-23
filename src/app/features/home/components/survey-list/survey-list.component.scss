@@ -14,7 +14,6 @@
 
     --survey-card-padding: var(--space-md);
 
-    /* The page itself scrolls on phones; the inner scroll area starts with two columns. */
     @include media-up(sm) {
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: var(--row-height);

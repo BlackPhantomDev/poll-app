@@ -83,10 +83,6 @@
   }
 }
 
-/**
- * Failure message sitting next to the control that failed. The palette has no
- * dedicated error colour yet, so this leans on the strongest accent instead.
- */
 @mixin inline-error {
   border-inline-start: 3px solid var(--color-dialog-header-orange);
   border-radius: var(--radius-button);
@@ -124,13 +120,7 @@
   }
 }
 
-/**
- * Keeps a projected button icon collapsed until the button is hovered or focused.
- * The button widens from its content edge, so the layout around it decides which
- * side stays put. Apply to the app-button host and pass the icon's class.
- */
 @mixin button-reveal-icon($icon, $size: 24px) {
-  /* Touch has no hover, so there the icon stays out at its revealed spacing. */
   --button-gap: var(--space-2xs);
 
   @media (hover: hover) {

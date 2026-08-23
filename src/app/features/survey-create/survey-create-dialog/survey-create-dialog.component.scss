@@ -157,7 +157,6 @@
     flex-shrink: 0;
 }
 
-
 .dialog-footer {
     display: flex;
     align-items: center;
@@ -181,7 +180,6 @@
     }
 }
 
-/* Same as the reveal mixin: without hover the icon has to stay visible. */
 @media (hover: hover) {
     .dialog-footer__publish-icon {
         width: 0;

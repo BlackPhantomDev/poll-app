@@ -4,7 +4,6 @@
 
 @include root-tokens;
 
-/* 48px of gutter eats a quarter of a phone screen; the wide value starts at sm. */
 :root {
   @include media-up(sm) {
     --layout-gutter: var(--layout-gutter-wide);
@@ -57,7 +56,6 @@ body * {
     }
   }
 }
-
 
 body {
   min-height: 100dvh;

@@ -15,8 +15,6 @@ p {
     font-size: 32px;
 }
 
-/* On phones the cards stay card-sized and scroll sideways, bleeding to the screen edge
-   so the next one peeks out. From sm up they wrap into the normal grid. */
 .list {
   display: grid;
   grid-auto-flow: column;

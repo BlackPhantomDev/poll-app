@@ -129,7 +129,6 @@ export class SurveyDetailPageComponent {
       this.responseService.markVoted(this.id());
       this.voted.set(true);
     } catch {
-      // The form stays open with the selections intact so the visitor can retry.
       this.submitError.set('Your answers could not be submitted. Please try again.');
     } finally {
       this.submitting.set(false);
