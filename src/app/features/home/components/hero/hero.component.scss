@@ -50,76 +50,71 @@ h1 {
 .hero__art {
     grid-area: animation;
     position: relative;
-    width: 100%;
     max-width: 520px;
     margin-inline: auto;
-    aspect-ratio: 1;
 }
 
 .hero__art-phone {
-    position: absolute;
-    inset: 0;
+    display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .hero__art-piece {
     position: absolute;
-    animation: hero-drift var(--drift-duration) var(--drift-delay, 0s) ease-in-out infinite;
-    will-change: transform;
 }
 
 .hero__art-bubble {
     left: 19.4%;
     top: 24.4%;
     width: 22%;
-    --drift-x: 6px;
-    --drift-y: -10px;
-    --drift-rotate: -2deg;
-    --drift-duration: 7s;
+    --hover-x: -34px;
+    --hover-y: -22px;
+    --hover-scale: 1.12;
 }
 
 .hero__art-question {
     left: 74%;
     top: 1.6%;
     width: 13.9%;
-    --drift-x: -5px;
-    --drift-y: 9px;
-    --drift-rotate: 3deg;
-    --drift-duration: 6s;
-    --drift-delay: -2s;
+    --hover-x: 10px;
+    --hover-y: -8px;
+    --hover-scale: 1.06;
 }
 
 .hero__art-check {
     left: 77.5%;
     top: 61.3%;
     width: 18.8%;
-    --drift-x: 8px;
-    --drift-y: 8px;
-    --drift-rotate: -3deg;
-    --drift-duration: 8s;
-    --drift-delay: -4s;
+    --hover-x: 22px;
+    --hover-y: 6px;
+    --hover-scale: 1.1;
 }
 
 .hero__art-star {
     left: 13.7%;
     top: 73.4%;
     width: 15.1%;
-    --drift-x: -7px;
-    --drift-y: -8px;
-    --drift-rotate: 4deg;
-    --drift-duration: 9s;
-    --drift-delay: -1s;
+    --hover-x: -16px;
+    --hover-y: 10px;
+    --hover-scale: 1.06;
 }
 
-@keyframes hero-drift {
-    50% {
-        transform: translate(var(--drift-x), var(--drift-y)) rotate(var(--drift-rotate));
+@media (hover: hover) {
+    .hero__art-piece {
+        transition: transform var(--duration-slow) var(--easing);
+        will-change: transform;
+    }
+
+    .hero__art:hover .hero__art-piece {
+        transform:
+            translate(var(--hover-x), var(--hover-y))
+            scale(var(--hover-scale, 1));
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .hero__art-piece {
-        animation: none;
+        transition: none;
     }
 }
