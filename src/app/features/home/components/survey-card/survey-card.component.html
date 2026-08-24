@@ -6,9 +6,9 @@
 </ng-template>
 
 @if (ended()) {
-    <div class="ending-soon-card">
+    <article class="ending-soon-card">
         <ng-container [ngTemplateOutlet]="content" />
-    </div>
+    </article>
 } @else {
     <a class="ending-soon-card" [routerLink]="['/survey', id()]">
         <ng-container [ngTemplateOutlet]="content" />
