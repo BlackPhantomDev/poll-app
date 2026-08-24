@@ -30,6 +30,10 @@
     font-weight: var(--font-weight-regular);
 }
 
+.meta__required {
+    @include required-marker;
+}
+
 .meta__control {
     display: flex;
     align-items: center;

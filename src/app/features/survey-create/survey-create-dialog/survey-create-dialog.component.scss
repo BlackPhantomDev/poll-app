@@ -96,6 +96,15 @@
     flex-shrink: 0;
 }
 
+.dialog-header__legend {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+}
+
+.dialog-header__legend-marker {
+    @include required-marker;
+}
+
 .dialog-main {
     display: flex;
     flex-direction: column;

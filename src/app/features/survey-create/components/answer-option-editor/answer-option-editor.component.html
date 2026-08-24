@@ -1,6 +1,6 @@
 <div class="option" [formGroup]="group()">
     <span class="option__letter" aria-hidden="true">{{ index() | optionLetter }}.</span>
     <label class="option__label" [for]="inputId()">Answer {{ index() | optionLetter }}</label>
-    <input class="option__input" [id]="inputId()" type="text" formControlName="label" [maxlength]="maxOption" />
+    <input class="option__input" [id]="inputId()" type="text" formControlName="label" [maxlength]="maxOption" aria-required="true" />
     <app-icon-button label="Remove answer" (click)="removed.emit()" />
 </div>

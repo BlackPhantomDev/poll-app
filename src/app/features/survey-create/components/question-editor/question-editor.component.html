@@ -1,14 +1,14 @@
 <div class="question" [formGroup]="group()">
     <div class="question__header">
-        <h4 class="question__title">{{ index() + 1 }}. Question</h4>
+        <h4 class="question__title">{{ index() + 1 }}. Question<span class="question__required" aria-hidden="true">*</span></h4>
         <app-icon-button label="Remove question" (click)="removed.emit()" />
     </div>
 
     <label class="question__text-label" [for]="textId()">Question {{ index() + 1 }} text</label>
-    <input class="question__text" [id]="textId()" type="text" formControlName="text" [maxlength]="maxQuestion" placeholder="Which date would work best for you?" />
+    <input class="question__text" [id]="textId()" type="text" formControlName="text" [maxlength]="maxQuestion" aria-required="true" placeholder="Which date would work best for you?" />
 
     <div class="question__answers">
-        <span class="question__answers-label">Answers</span>
+        <span class="question__answers-label">Answers<span class="question__required" aria-hidden="true">*</span></span>
         <label class="question__multiple">
             <input type="checkbox" formControlName="allowMultiple" />
             Allow multiple answers.

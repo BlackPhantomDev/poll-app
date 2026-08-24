@@ -41,6 +41,10 @@
     font-weight: var(--font-weight-bold);
 }
 
+.question__required {
+    @include required-marker;
+}
+
 .question__multiple {
     display: flex;
     align-items: center;

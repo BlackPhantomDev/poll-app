@@ -1,8 +1,8 @@
 <div class="meta__primary">
     <div class="meta__field">
-        <label class="meta__label" for="survey-name">Survey name</label>
+        <label class="meta__label" for="survey-name">Survey name<span class="meta__required" aria-hidden="true">*</span></label>
         <div class="meta__control">
-            <input id="survey-name" type="text" formControlName="title" [maxlength]="maxTitle" />
+            <input id="survey-name" type="text" formControlName="title" [maxlength]="maxTitle" aria-required="true" />
             <app-icon-button label="Clear survey name" (click)="clear('title')" />
         </div>
     </div>

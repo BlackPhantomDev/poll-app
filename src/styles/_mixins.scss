@@ -93,6 +93,12 @@
   color: var(--color-text-dark);
 }
 
+@mixin required-marker {
+  margin-inline-start: var(--space-3xs);
+  color: var(--color-primary-orange);
+  font-weight: var(--font-weight-bold);
+}
+
 @mixin selection-control($border-color: currentColor) {
   appearance: none;
   display: inline-grid;
