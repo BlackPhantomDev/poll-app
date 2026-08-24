@@ -1,10 +1,16 @@
-<a class="ending-soon-card" [routerLink]="['/survey', id()]">
-    <p class="card__category">
-        {{category ()}}
-    </p>
-    <p class="card__title">
-        {{title ()}}
-    </p>
+<ng-template #content>
+    <p class="card__category">{{ category() }}</p>
+    <p class="card__title">{{ title() }}</p>
 
     <app-badge>{{ endDate() | endsIn }}</app-badge>
-</a>
+</ng-template>
+
+@if (ended()) {
+    <div class="ending-soon-card">
+        <ng-container [ngTemplateOutlet]="content" />
+    </div>
+} @else {
+    <a class="ending-soon-card" [routerLink]="['/survey', id()]">
+        <ng-container [ngTemplateOutlet]="content" />
+    </a>
+}

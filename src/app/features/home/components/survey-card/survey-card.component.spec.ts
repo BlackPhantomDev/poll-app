@@ -25,4 +25,23 @@ describe('SurveyCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('links to the survey while it is still running', async () => {
+    fixture.componentRef.setInput('endDate', new Date(Date.now() + 86_400_000).toISOString());
+    await fixture.whenStable();
+
+    expect(fixture.nativeElement.querySelector('a')).toBeTruthy();
+  });
+
+  it('links to the survey when it has no end date', () => {
+    expect(fixture.nativeElement.querySelector('a')).toBeTruthy();
+  });
+
+  it('drops the link once the survey has ended', async () => {
+    fixture.componentRef.setInput('endDate', new Date(Date.now() - 86_400_000).toISOString());
+    await fixture.whenStable();
+
+    expect(fixture.nativeElement.querySelector('a')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.ending-soon-card')).toBeTruthy();
+  });
 });

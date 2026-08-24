@@ -8,7 +8,7 @@
   transition: background-color var(--duration-fast) var(--easing);
 }
 
-:host(:hover) {
+:host(:not([data-ended]):hover) {
   background-color: var(--survey-card-bg-hover, var(--color-ending-cards-hover));
 }
 

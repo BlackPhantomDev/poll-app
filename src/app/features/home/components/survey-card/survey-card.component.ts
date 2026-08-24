@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { BadgeComponent } from '../../../../shared/components/badge/badge.component';
@@ -16,11 +17,12 @@ export interface SurveyCardView {
 
 @Component({
   selector: 'app-survey-card',
-  imports: [BadgeComponent, RouterLink, EndsInPipe],
+  imports: [BadgeComponent, RouterLink, EndsInPipe, NgTemplateOutlet],
   templateUrl: './survey-card.component.html',
   styleUrl: './survey-card.component.scss',
   host: {
     '[attr.data-variant]': 'variant()',
+    '[attr.data-ended]': 'ended() ? "" : null',
   },
 })
 export class SurveyCardComponent {
@@ -29,4 +31,11 @@ export class SurveyCardComponent {
   readonly category = input.required<string>();
   readonly title = input.required<string>();
   readonly endDate = input.required<string | null>();
+
+  /** A survey past its end date only reports its result; it no longer links anywhere. */
+  protected readonly ended = computed(() => {
+    const endDate = this.endDate();
+
+    return endDate !== null && new Date(endDate) <= new Date();
+  });
 }
