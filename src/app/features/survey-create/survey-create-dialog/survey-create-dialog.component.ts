@@ -155,7 +155,7 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
       return;
     }
 
-    const field = this.dialogEl().nativeElement.querySelector<HTMLElement>(`#${CSS.escape(fieldId)}`);
+    const field = this.dialogEl().nativeElement.querySelector<HTMLElement>(`[id="${fieldId}"]`);
     field?.focus();
   }
 
