@@ -15,9 +15,25 @@ import { SurveyCreateDialogComponent } from '../../survey-create/survey-create-d
 import { SurveyService } from '../../../core/services/survey.service';
 import { SurveyListItem } from '../../../core/models';
 
+const DAY_IN_MS = 86_400_000;
+
+/** How far ahead the featured row looks; beyond that a survey is not "ending soon". */
+const ENDING_SOON_DAYS = 14;
+
 /** A survey runs until its end date; without one it never closes. */
 function isActive(survey: SurveyListItem, now: number): boolean {
   return survey.end_date === null || new Date(survey.end_date).getTime() > now;
+}
+
+/** Featured are running surveys whose end date falls inside the window, nearest first. */
+function endsSoon(survey: SurveyListItem, now: number): boolean {
+  if (survey.end_date === null) {
+    return false;
+  }
+
+  const end = new Date(survey.end_date).getTime();
+
+  return end > now && end <= now + ENDING_SOON_DAYS * DAY_IN_MS;
 }
 
 /** Narrows a loaded survey to what a card shows and resolves its category label. */
@@ -68,7 +84,7 @@ export class HomePageComponent {
     const now = Date.now();
 
     return this.surveys()
-      .filter((survey) => survey.end_date !== null && new Date(survey.end_date).getTime() > now)
+      .filter((survey) => endsSoon(survey, now))
       .slice(0, 3)
       .map(toCardView);
   });

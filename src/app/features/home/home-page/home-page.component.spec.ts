@@ -98,6 +98,19 @@ describe('HomePageComponent', () => {
     expect(component['endingSoon']().map((card) => card.id)).toEqual(['b']);
   });
 
+  it('features only what ends within the next two weeks', async () => {
+    await setup([survey('a', 13), survey('b', 15), survey('c', 30)]);
+
+    expect(component['endingSoon']().map((card) => card.id)).toEqual(['a']);
+  });
+
+  it('says so when nothing is ending soon', async () => {
+    await setup([survey('a', 30), survey('b', null)]);
+
+    expect(component['endingSoon']()).toEqual([]);
+    expect(component['endingSoonMessage']()).toBe('No surveys ending soon.');
+  });
+
   it('explains an empty category instead of claiming there are no surveys', async () => {
     await setup([survey('a', 2)]);
     component['category'].set('health-wellness');
