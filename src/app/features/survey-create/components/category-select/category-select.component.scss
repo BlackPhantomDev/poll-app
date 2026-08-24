@@ -6,6 +6,8 @@
 
 .category__select {
     appearance: none;
+    field-sizing: content;
+    max-width: 100%;
     border: none;
     background-color: transparent;
     color: var(--color-text-light);
