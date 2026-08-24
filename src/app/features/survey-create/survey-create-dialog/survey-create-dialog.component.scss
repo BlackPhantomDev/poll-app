@@ -120,6 +120,7 @@
 
 .dialog-main__scroll {
     display: grid;
+    position: relative;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-lg);
     flex-grow: 1;
