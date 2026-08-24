@@ -21,20 +21,15 @@ p {
   grid-auto-columns: 72%;
   gap: var(--space-md);
 
-  margin-inline: calc(-1 * var(--layout-gutter));
-  padding-inline: var(--layout-gutter);
   padding-block-end: var(--space-2xs);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--layout-gutter);
 
   @include media-up(sm) {
     grid-auto-flow: row;
     grid-auto-columns: auto;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
-    margin-inline: 0;
-    padding-inline: 0;
     padding-block-end: 0;
     overflow-x: visible;
     scroll-snap-type: none;
