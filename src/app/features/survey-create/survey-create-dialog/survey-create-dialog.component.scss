@@ -148,15 +148,25 @@
 }
 
 .dialog-main__add-question {
-    justify-self: start;
     --button-text-color: var(--color-text-light);
     --button-bg-color: var(--color-secondary-btn);
     --button-bg-color-hover: var(--color-secondary-btn-hover);
+    --button-gap: var(--space-2xs);
+    --button-padding-inline: var(--space-sm);
+
+    @include media-up(md) {
+        --button-gap: var(--space-md);
+        --button-padding-inline: var(--space-md);
+        justify-self: start;
+    }
 }
 
 .dialog-main__add-label {
-    max-width: 12ch;
     text-align: start;
+
+    @include media-up(md) {
+        max-width: 12ch;
+    }
 }
 
 .dialog-main__add-icon {

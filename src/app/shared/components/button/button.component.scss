@@ -8,10 +8,11 @@
 .button {
   @include reset-button;
   display: inline-flex;
+  flex: 1;
   gap: var(--button-gap, var(--space-md));
   align-items: center;
-  justify-content: center;
-  padding-inline: var(--space-md);
+  justify-content: var(--button-justify, center);
+  padding-inline: var(--button-padding-inline, var(--space-md));
   padding-block: var(--space-2xs);
   border-radius: var(--radius-button);
   background-color: var(--button-bg-color, var(--color-primary-btn));

@@ -12,6 +12,16 @@
     justify-content: space-between;
     align-items: flex-end;
     gap: var(--space-sm) var(--space-md);
+
+    .meta__field {
+        flex: 1 1 100%;
+    }
+
+    @include media-up(md) {
+        .meta__field {
+            flex: 0 1 auto;
+        }
+    }
 }
 
 .meta__field {
@@ -54,8 +64,10 @@
     }
 
     input[type='date'] {
-        flex: 0 1 auto;
-        width: 10rem;
+        @include media-up(md) {
+            flex: 0 1 auto;
+            width: 10rem;
+        }
     }
 
     textarea {
