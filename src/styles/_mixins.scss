@@ -73,7 +73,8 @@
 
 @mixin form-input {
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
+  @include card-shape(top-right, var(--radius-lg));
   background-color: var(--color-input-field-bg);
   color: var(--color-text-dark);
   padding: var(--space-2xs) var(--space-sm);
