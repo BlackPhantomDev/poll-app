@@ -8,14 +8,35 @@ import { SurveyMetaFormComponent } from '../components/survey-meta-form/survey-m
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
 import { CloseButtonComponent } from '../../../shared/components/close-button/close-button.component';
-import { SurveyService } from '../../../core/services/survey.service';
+import {
+  CreateSurveyInput,
+  CreateSurveyQuestion,
+  SurveyService,
+} from '../../../core/services/survey.service';
 import {
   createQuestionForm,
   createSurveyForm,
   firstInvalidFieldId,
   MIN_QUESTIONS,
   QuestionForm,
+  SurveyCreateForm,
 } from '../survey-create-form';
+
+type RawQuestion = ReturnType<SurveyCreateForm['getRawValue']>['questions'][number];
+
+/** The stored position is the index, so reordering the form reorders the survey. */
+function toCreateQuestion(question: RawQuestion, index: number): CreateSurveyQuestion {
+  return {
+    id: question.id,
+    text: question.text.trim(),
+    position: index,
+    allow_multiple: question.allowMultiple,
+    options: question.options.map((option) => ({
+      id: option.id,
+      label: option.label.trim(),
+    })),
+  };
+}
 
 @Component({
   imports: [
@@ -117,25 +138,15 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
       return;
     }
 
+    await this.send();
+  }
+
+  /** Sends the survey and leaves the dialog open with its input if the RPC failed. */
+  private async send(): Promise<void> {
     this.publishing.set(true);
 
     try {
-      const { questions, ...meta } = this.form.getRawValue();
-      const surveyId = await this.surveyService.createSurvey({
-        ...meta,
-        title: meta.title.trim(),
-        description: meta.description.trim(),
-        questions: questions.map((question, index) => ({
-          id: question.id,
-          text: question.text.trim(),
-          position: index,
-          allow_multiple: question.allowMultiple,
-          options: question.options.map((option) => ({
-            id: option.id,
-            label: option.label.trim(),
-          })),
-        })),
-      });
+      const surveyId = await this.surveyService.createSurvey(this.toCreateInput());
 
       this.form.markAsPristine();
       this.dialogEl().nativeElement.close();
@@ -145,6 +156,18 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
     } finally {
       this.publishing.set(false);
     }
+  }
+
+  /** Trims the typed values; the questions carry their display order as position. */
+  private toCreateInput(): CreateSurveyInput {
+    const { questions, ...meta } = this.form.getRawValue();
+
+    return {
+      ...meta,
+      title: meta.title.trim(),
+      description: meta.description.trim(),
+      questions: questions.map(toCreateQuestion),
+    };
   }
 
   /** Scrolls the field that blocks publishing into view and puts the caret in it. */

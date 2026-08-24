@@ -75,19 +75,24 @@ export function firstInvalidFieldId(form: SurveyCreateForm): string | null {
     return SURVEY_CATEGORY_FIELD_ID;
   }
 
-  for (const question of form.controls.questions.controls) {
-    if (question.controls.text.invalid) {
-      return questionTextFieldId(question);
-    }
+  return (
+    form.controls.questions.controls
+      .map((question) => firstInvalidQuestionFieldId(question))
+      .find((fieldId) => fieldId !== null) ?? null
+  );
+}
 
-    for (const option of question.controls.options.controls) {
-      if (option.controls.label.invalid) {
-        return answerOptionFieldId(option);
-      }
-    }
+/** The first gap inside one question, its own text before its answer options. */
+function firstInvalidQuestionFieldId(question: QuestionForm): string | null {
+  if (question.controls.text.invalid) {
+    return questionTextFieldId(question);
   }
 
-  return null;
+  const option = question.controls.options.controls.find(
+    (candidate) => candidate.controls.label.invalid,
+  );
+
+  return option === undefined ? null : answerOptionFieldId(option);
 }
 
 /** `Validators.required` accepts "   ", which would store a blank title as valid. */

@@ -2,6 +2,7 @@ import { inject, Service } from '@angular/core';
 import { RealtimeChannel } from '@supabase/supabase-js';
 
 import { SupabaseService } from './supabase.service';
+import { optionLetter } from '../pipes/option-letter.pipe';
 import { Question, QuestionResult, SurveyResponse } from '../models';
 
 export type ResponseVotes = Pick<SurveyResponse, 'id' | 'answers'>;
@@ -42,21 +43,27 @@ export class ResultsService {
    * question, not to the number of participants, so multiple choice stays at 100 %.
    */
   buildResults(questions: Question[], counts: Map<string, number>): QuestionResult[] {
-    return questions.map((question) => {
-      const votes = question.options.map((option) => counts.get(option.id) ?? 0);
-      const total = votes.reduce((sum, count) => sum + count, 0);
+    return questions.map((question) => ({
+      questionId: question.id,
+      text: question.text,
+      options: this.buildOptionResults(question, counts),
+    }));
+  }
 
-      return {
-        questionId: question.id,
-        text: question.text,
-        options: question.options.map((option, index) => ({
-          label: option.label,
-          letter: String.fromCharCode(65 + index),
-          votes: votes[index],
-          percent: total === 0 ? 0 : Math.round((votes[index] / total) * 100),
-        })),
-      };
-    });
+  /** Percentages relate to the votes inside this one question, not to the participants. */
+  private buildOptionResults(
+    question: Question,
+    counts: Map<string, number>,
+  ): QuestionResult['options'] {
+    const votes = question.options.map((option) => counts.get(option.id) ?? 0);
+    const total = votes.reduce((sum, count) => sum + count, 0);
+
+    return question.options.map((option, index) => ({
+      label: option.label,
+      letter: optionLetter(index),
+      votes: votes[index],
+      percent: total === 0 ? 0 : Math.round((votes[index] / total) * 100),
+    }));
   }
 
   /** Subscribes to new participations; one participation is one row and therefore one event. */
