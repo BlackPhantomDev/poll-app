@@ -27,6 +27,6 @@
         --visible-rows: 3;
 
         grid-template-columns: 1fr 1fr;
-        grid-auto-rows: var(--row-height);
+        grid-auto-rows: minmax(var(--row-height), auto);
     }
 }
