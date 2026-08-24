@@ -6,12 +6,16 @@
     flex-direction: column;
     background-color: var(--color-primary-purple);
     min-height: 100dvh;
-    padding-bottom: var(--space-3xl)
 }
 
 app-header,
-app-hero {
+app-hero,
+app-footer {
     @include container(container-wide);
+}
+
+app-footer {
+    margin-block-start: var(--space-3xl);
 }
 
 app-ending-soon,

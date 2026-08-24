@@ -8,7 +8,8 @@
   min-height: 100dvh;
 }
 
-app-header {
+app-header,
+app-footer {
   @include container(container-wide);
 }
 

@@ -2,6 +2,7 @@ import { Component, computed, inject, resource, signal } from '@angular/core';
 
 import { HeroComponent } from '../components/hero/hero.component';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
 import { EndingSoonComponent } from '../components/ending-soon/ending-soon.component';
 import { CategoryFilterComponent } from '../components/category-filter/category-filter.component';
 import { SurveyTabsComponent, SurveyTab } from '../components/survey-tabs/survey-tabs.component';
@@ -58,7 +59,8 @@ function toCardView(survey: SurveyListItem): SurveyCardView {
     EmptyStateComponent,
     LoadingSpinnerComponent,
     ButtonComponent,
-    SurveyCreateDialogComponent
+    SurveyCreateDialogComponent,
+    FooterComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',

@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AddIconComponent } from '../../../shared/components/add-icon/add-icon.component';
 import { SurveyCreateDialogComponent } from '../../survey-create/survey-create-dialog/survey-create-dialog.component';
@@ -33,6 +34,7 @@ import { Answer } from '../../../core/models';
     SurveyParticipateFormComponent,
     SurveyResultsComponent,
     LoadingSpinnerComponent,
+    FooterComponent,
   ],
   templateUrl: './survey-detail-page.component.html',
   styleUrl: './survey-detail-page.component.scss',

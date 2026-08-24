@@ -11,34 +11,17 @@ app-footer {
     @include container(container-wide);
 }
 
-.detail__create {
-    display: none;
-
-    @include media-up(sm) {
-        @include button-reveal-icon('.detail__create-icon');
-        display: inline-flex;
-    }
-}
-
-.detail {
-    @include container;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-2xl);
-    align-items: start;
+.imprint {
+    @include container(container-narrow);
     flex: 1;
     padding-block: 0 var(--space-2xl);
 
     @include media-up(sm) {
         padding-block: var(--space-lg) var(--space-2xl);
     }
-
-    @include media-up(lg) {
-        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-    }
 }
 
-.detail__card {
+.imprint__card {
     @include card-shape(top-right, var(--radius-corner));
     display: flex;
     flex-direction: column;
@@ -50,21 +33,38 @@ app-footer {
         border-top-right-radius: var(--radius-corner-lg);
         padding: var(--space-xl);
     }
+
+    p {
+        max-width: 60ch;
+        color: var(--color-text-dark);
+    }
 }
 
-.detail__results {
-    padding-block: var(--space-lg);
-}
-
-.detail__state {
-    grid-column: 1 / -1;
-    justify-self: center;
-    align-self: center;
-    text-align: center;
+.imprint__title {
+    font-size: var(--font-size-h2);
     color: var(--color-text-dark);
 }
 
-.detail__error {
-    @include centered-flex-box-column;
-    gap: var(--space-md);
+.imprint__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+}
+
+.imprint__heading {
+    font-family: var(--font-body);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-dark);
+}
+
+.imprint__link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--duration-fast) var(--easing);
+
+    &:hover {
+        color: var(--color-result-percent);
+    }
 }

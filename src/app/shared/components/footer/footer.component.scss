@@ -1,0 +1,29 @@
+@use '../../../../styles/tokens' as *;
+@use '../../../../styles/mixins' as *;
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3xs) var(--space-md);
+  border-block-start: 1px solid var(--color-secondary-purple);
+  padding-block: var(--space-sm);
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+}
+
+.footer--dark {
+  border-block-start-color: var(--color-result-bar-track);
+  color: var(--color-text-dark);
+}
+
+.footer__link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--duration-fast) var(--easing);
+
+  &:hover {
+    color: var(--color-primary-orange);
+  }
+}
