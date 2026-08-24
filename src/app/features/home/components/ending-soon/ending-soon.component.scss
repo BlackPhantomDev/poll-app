@@ -26,6 +26,7 @@ p {
   padding-block-end: var(--space-2xs);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--layout-gutter);
 
   @include media-up(sm) {
     grid-auto-flow: row;
