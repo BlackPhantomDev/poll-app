@@ -42,10 +42,15 @@
 
 .participate__submit {
     align-self: flex-end;
-    --button-bg-color: var(--color-light-orange);
+    --button-bg-color: var(--color-primary-orange);
     --button-bg-color-hover: var(--color-secondary-orange);
 
     @include media-up(sm) {
         margin-inline-start: auto;
     }
+}
+
+.participate__submit-icon {
+    flex-shrink: 0;
+    max-width: none;
 }
