@@ -17,6 +17,7 @@ export class SurveyResultsComponent {
   /** Only drives the phone layout; from sm up the styles keep the results open regardless. */
   protected readonly expanded = signal(false);
 
+  /** Folds the results away on phones, where they sit below the form instead of beside it. */
   protected toggle(): void {
     this.expanded.update((open) => !open);
   }

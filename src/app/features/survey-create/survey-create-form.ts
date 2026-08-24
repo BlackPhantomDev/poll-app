@@ -109,6 +109,7 @@ function knownCategory(control: AbstractControl<CategorySlug | null>): Validatio
     : { unknownCategory: true };
 }
 
+/** Builds an empty create form; it already carries the one question that is required. */
 export function createSurveyForm(): SurveyCreateForm {
   return new FormGroup({
     title: new FormControl('', {
@@ -125,6 +126,10 @@ export function createSurveyForm(): SurveyCreateForm {
   });
 }
 
+/**
+ * Builds a question with the minimum number of options. The id is created here and
+ * not on save, so the option_ids stored in a response always point somewhere.
+ */
 export function createQuestionForm(): QuestionForm {
   return new FormGroup({
     id: new FormControl<string>(crypto.randomUUID(), { nonNullable: true }),
@@ -139,6 +144,7 @@ export function createQuestionForm(): QuestionForm {
   });
 }
 
+/** Builds an empty answer option; like a question it gets its id right away. */
 export function createAnswerOptionForm(): AnswerOptionForm {
   return new FormGroup({
     id: new FormControl<string>(crypto.randomUUID(), { nonNullable: true }),

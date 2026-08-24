@@ -9,6 +9,10 @@ export const CATEGORIES = [
 
 export type CategorySlug = (typeof CATEGORIES)[number]['slug'];
 
+/**
+ * Resolves a stored slug to its display label. An unknown slug is passed through
+ * unchanged so a survey from an older category still shows something readable.
+ */
 export function categoryLabel(slug: string | null): string | null {
   if (slug === null) {
     return null;

@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 export class SupabaseService {
   private instance: SupabaseClient | null = null;
 
+  /** The shared client; it is built on first use so tests can replace this service. */
   get client(): SupabaseClient {
     if (this.instance === null) {
       this.instance = this.createInstance();
@@ -15,6 +16,7 @@ export class SupabaseService {
     return this.instance;
   }
 
+  /** Fails loudly on a missing configuration instead of on the first request. */
   private createInstance(): SupabaseClient {
     const { supabaseUrl, supabaseAnonKey } = environment;
 

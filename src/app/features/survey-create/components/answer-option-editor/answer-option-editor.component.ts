@@ -32,10 +32,12 @@ export class AnswerOptionEditorComponent {
 
   protected readonly errorId = computed(() => fieldErrorId(this.inputId()));
 
+  /** The answer text; named apart from the icon button's own `label` input. */
   protected get labelControl(): AbstractControl<string> {
     return this.group().controls.label;
   }
 
+  /** True once the field is both invalid and worth complaining about. */
   protected showError(control: AbstractControl): boolean {
     return showFieldError(control, this.submitted());
   }

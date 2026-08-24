@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './close-button.component.scss',
 })
 export class CloseButtonComponent {
-  /** Gesetzt: rendert einen Link auf diese Route, sonst einen normalen Button. */
+  /** Set: renders a link to this route, otherwise a plain button. */
   readonly link = input<string>();
   readonly label = input('Close');
 }

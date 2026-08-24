@@ -85,14 +85,17 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
     return this.publishError();
   });
 
+  /** The questions in display order; their index becomes the stored position. */
   protected get questions(): FormArray<QuestionForm> {
     return this.form.controls.questions;
   }
 
+  /** Opens the dialog as a modal as soon as its element exists. */
   ngAfterViewInit(): void {
     this.dialogEl().nativeElement.showModal();
   }
 
+  /** Closes straight away while nothing was typed, otherwise asks first. */
   protected close(): void {
     if (this.form.pristine) {
       this.dialogEl().nativeElement.close();

@@ -15,10 +15,12 @@ import { SurveyCreateDialogComponent } from '../../survey-create/survey-create-d
 import { SurveyService } from '../../../core/services/survey.service';
 import { SurveyListItem } from '../../../core/models';
 
+/** A survey runs until its end date; without one it never closes. */
 function isActive(survey: SurveyListItem, now: number): boolean {
   return survey.end_date === null || new Date(survey.end_date).getTime() > now;
 }
 
+/** Narrows a loaded survey to what a card shows and resolves its category label. */
 function toCardView(survey: SurveyListItem): SurveyCardView {
   return {
     id: survey.id,
@@ -112,6 +114,7 @@ export class HomePageComponent {
     this.surveysResource.reload();
   }
 
+  /** Loads the overview again after a failed request. */
   protected retry(): void {
     this.surveysResource.reload();
   }

@@ -26,6 +26,7 @@ export class ResponseService {
     localStorage.setItem(this.votedKey(surveyId), new Date().toISOString());
   }
 
+  /** Builds the LocalStorage key so reading and writing can never drift apart. */
   private votedKey(surveyId: string): string {
     return `voted:${surveyId}`;
   }

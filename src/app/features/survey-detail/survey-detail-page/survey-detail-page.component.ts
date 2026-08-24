@@ -140,6 +140,7 @@ export class SurveyDetailPageComponent {
     }
   }
 
+  /** Loads survey and participations again; either request may have been the one that failed. */
   protected retry(): void {
     this.surveyResource.reload();
     this.responsesResource.reload();

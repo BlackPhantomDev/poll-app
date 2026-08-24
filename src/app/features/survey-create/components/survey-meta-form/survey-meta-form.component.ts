@@ -35,10 +35,12 @@ export class SurveyMetaFormComponent {
     return this.controlContainer.control as SurveyCreateForm;
   }
 
+  /** The only required field in this block; the rest is optional. */
   protected get title(): AbstractControl<string> {
     return this.form.controls.title;
   }
 
+  /** True once the field is both invalid and worth complaining about. */
   protected showError(control: AbstractControl): boolean {
     return showFieldError(control, this.submitted());
   }

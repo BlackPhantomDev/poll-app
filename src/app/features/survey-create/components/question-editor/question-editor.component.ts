@@ -36,14 +36,17 @@ export class QuestionEditorComponent {
 
   protected readonly textErrorId = computed(() => fieldErrorId(this.textId()));
 
+  /** The question wording itself. */
   protected get text(): AbstractControl<string> {
     return this.group().controls.text;
   }
 
+  /** The answer options in display order. */
   protected get options(): FormArray<AnswerOptionForm> {
     return this.group().controls.options;
   }
 
+  /** True once the field is both invalid and worth complaining about. */
   protected showError(control: AbstractControl): boolean {
     return showFieldError(control, this.submitted());
   }
