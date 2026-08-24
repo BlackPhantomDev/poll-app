@@ -2,28 +2,31 @@
 
 .surveys-container {
     --grid-gap: var(--space-md);
-    --row-height: 128px;
-    --visible-rows: 3;
+    --row-height: 133px;
+    --visible-rows: 2.5;
+    --survey-card-padding: var(--space-md);
 
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
-
-    margin-top: var(--space-lg);
     gap: var(--grid-gap);
 
-    --survey-card-padding: var(--space-md);
+    margin-top: var(--space-lg);
+    margin-inline: calc(-1 * var(--space-sm));
+    padding-inline: var(--space-2xs);
+
+    max-height: calc(
+        var(--visible-rows) * var(--row-height) +
+        (var(--visible-rows) - 1) * var(--grid-gap)
+    );
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
 
     @include media-up(sm) {
+        --row-height: 128px;
+        --visible-rows: 3;
+
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: var(--row-height);
-        margin-inline: calc(-1 * var(--space-2xs));
-
-        max-height: calc(
-            var(--visible-rows) * var(--row-height) +
-            (var(--visible-rows) - 1) * var(--grid-gap)
-        );
-        overflow-y: auto;
-        scrollbar-gutter: stable both-edges;
     }
 }
