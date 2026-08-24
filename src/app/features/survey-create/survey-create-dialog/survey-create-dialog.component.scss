@@ -120,8 +120,7 @@
     flex-grow: 1;
     min-height: 0;
     overflow-y: auto;
-    scrollbar-gutter: stable;
-    padding-right: var(--space-2xs);
+    scrollbar-gutter: stable both-edges;
 
     @include media-up(md) {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);

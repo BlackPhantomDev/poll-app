@@ -17,13 +17,13 @@
     @include media-up(sm) {
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: var(--row-height);
-        padding-right: var(--space-2xs);
+        margin-inline: calc(-1 * var(--space-2xs));
 
         max-height: calc(
             var(--visible-rows) * var(--row-height) +
             (var(--visible-rows) - 1) * var(--grid-gap)
         );
         overflow-y: auto;
-        scrollbar-gutter: stable;
+        scrollbar-gutter: stable both-edges;
     }
 }
