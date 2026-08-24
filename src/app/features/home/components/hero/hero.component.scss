@@ -28,7 +28,7 @@ h1 {
     width: 100%;
     p {
         font-family: Mulish;
-        color: white;
+        color: var(--color-text-light);
         font-size: var(--font-size-xl);
     }
     grid-area: desc;
