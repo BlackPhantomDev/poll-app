@@ -1,18 +1,48 @@
+@use '../../../../../styles/mixins' as *;
+
 :host {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
 }
 
+.survey-header__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+}
+
 .survey-header__badge {
-    align-self: flex-start;
     background-color: var(--color-survey-status-published);
+}
+
+.survey-header__close {
+    @include centered-flex-box-row;
+    @include focus-visible;
+
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-button);
+    background-color: var(--color-light-orange);
+    color: var(--color-text-dark);
+    transition: background-color var(--duration-fast) var(--easing);
+
+    &:hover {
+        background-color: var(--color-secondary-orange);
+    }
+
+    @include media-up(sm) {
+        display: none;
+    }
 }
 
 .survey-header__meta {
     display: flex;
-    gap: var(--space-md);
-    font-size: var(--font-size-sm);
+    flex-wrap: wrap;
+    gap: var(--space-2xs) var(--space-md);
+    font-size: var(--font-size-xs);
 }
 
 .survey-header__category {

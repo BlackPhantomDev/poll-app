@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { SurveyHeaderComponent } from './survey-header.component';
 import { Survey } from '../../../../core/models';
@@ -19,6 +20,7 @@ describe('SurveyHeaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SurveyHeaderComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SurveyHeaderComponent);
