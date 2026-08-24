@@ -127,6 +127,7 @@
     min-height: 0;
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
+    padding-inline: var(--space-2xs);
 
     @include media-up(md) {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
