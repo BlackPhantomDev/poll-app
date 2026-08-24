@@ -12,6 +12,10 @@
     font-weight: var(--font-weight-bold);
 }
 
+.option__label {
+    @include visually-hidden;
+}
+
 .option__input {
     @include form-input;
     flex: 1;

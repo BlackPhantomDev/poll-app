@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { FormArray, ReactiveFormsModule } from '@angular/forms';
 
 import { AnswerOptionEditorComponent } from '../answer-option-editor/answer-option-editor.component';
@@ -18,6 +18,9 @@ export class QuestionEditorComponent {
   readonly removed = output<void>();
 
   protected readonly maxQuestion = MAX_QUESTION_LENGTH;
+
+  /** The form group id is a UUID, so it keeps the label unique across questions. */
+  protected readonly textId = computed(() => `question-text-${this.group().controls.id.value}`);
 
   protected get options(): FormArray<AnswerOptionForm> {
     return this.group().controls.options;

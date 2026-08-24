@@ -4,7 +4,8 @@
         <app-icon-button label="Remove question" (click)="removed.emit()" />
     </div>
 
-    <input class="question__text" type="text" formControlName="text" [maxlength]="maxQuestion" placeholder="Which date would work best for you?" />
+    <label class="question__text-label" [for]="textId()">Question {{ index() + 1 }} text</label>
+    <input class="question__text" [id]="textId()" type="text" formControlName="text" [maxlength]="maxQuestion" placeholder="Which date would work best for you?" />
 
     <div class="question__answers">
         <span class="question__answers-label">Answers</span>

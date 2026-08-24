@@ -19,6 +19,10 @@
     color: inherit;
 }
 
+.question__text-label {
+    @include visually-hidden;
+}
+
 .question__text {
     @include form-input;
     width: 100%;

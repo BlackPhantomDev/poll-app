@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { IconButtonComponent } from '../../../../shared/components/icon-button/icon-button.component';
@@ -17,4 +17,7 @@ export class AnswerOptionEditorComponent {
   readonly removed = output<void>();
 
   protected readonly maxOption = MAX_OPTION_LENGTH;
+
+  /** The form group id is a UUID, so it keeps the label unique across options. */
+  protected readonly inputId = computed(() => `answer-option-${this.group().controls.id.value}`);
 }
