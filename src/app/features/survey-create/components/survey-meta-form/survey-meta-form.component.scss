@@ -20,6 +20,13 @@
     gap: var(--space-2xs);
 }
 
+.meta__label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+}
+
 .meta__label {
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-bold);

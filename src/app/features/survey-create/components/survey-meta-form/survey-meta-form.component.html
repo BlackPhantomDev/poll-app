@@ -1,18 +1,22 @@
 <div class="meta__primary">
     <div class="meta__field">
-        <label class="meta__label" for="survey-name">Survey name<span class="meta__required" aria-hidden="true">*</span></label>
+        <div class="meta__label-row">
+            <label class="meta__label" for="survey-name">Survey name<span class="meta__required" aria-hidden="true">*</span></label>
+            <app-icon-button label="Clear survey name" (click)="clear('title')" />
+        </div>
         <div class="meta__control">
             <input id="survey-name" type="text" formControlName="title" [maxlength]="maxTitle" aria-required="true" />
-            <app-icon-button label="Clear survey name" (click)="clear('title')" />
         </div>
     </div>
 
     <div class="meta__row">
         <div class="meta__field">
-            <label class="meta__label" for="survey-end-date">Set end date <span class="meta__hint">(optional)</span></label>
+            <div class="meta__label-row">
+                <label class="meta__label" for="survey-end-date">Set end date <span class="meta__hint">(optional)</span></label>
+                <app-icon-button label="Clear end date" (click)="clear('endDate')" />
+            </div>
             <div class="meta__control">
                 <input id="survey-end-date" type="date" formControlName="endDate" />
-                <app-icon-button label="Clear end date" (click)="clear('endDate')" />
             </div>
         </div>
         <app-category-select />
@@ -20,9 +24,11 @@
 </div>
 
 <div class="meta__field">
-    <label class="meta__label" for="survey-description">Describing text <span class="meta__hint">(optional)</span></label>
+    <div class="meta__label-row">
+        <label class="meta__label" for="survey-description">Describing text <span class="meta__hint">(optional)</span></label>
+        <app-icon-button label="Clear describing text" (click)="clear('description')" />
+    </div>
     <div class="meta__control meta__control--start">
         <textarea id="survey-description" formControlName="description" [maxlength]="maxDescription"></textarea>
-        <app-icon-button label="Clear describing text" (click)="clear('description')" />
     </div>
 </div>
