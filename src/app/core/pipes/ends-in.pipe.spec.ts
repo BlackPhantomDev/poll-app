@@ -17,8 +17,12 @@ describe('EndsInPipe', () => {
     expect(pipe.transform(null)).toBe('No end date');
   });
 
-  it('marks a passed end date as ended', () => {
-    expect(pipe.transform(inDays(-1))).toBe('Ended');
+  it('names the day a survey ended on', () => {
+    expect(pipe.transform('2026-03-07T10:00:00.000Z')).toBe('Ended 07.03.2026');
+  });
+
+  it('pads day and month to a fixed width', () => {
+    expect(pipe.transform('2025-11-04T10:00:00.000Z')).toBe('Ended 04.11.2025');
   });
 
   it('counts a part day as the last day', () => {
