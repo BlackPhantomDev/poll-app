@@ -2,20 +2,21 @@ import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { BadgeComponent } from '../../../../shared/components/badge/badge.component';
+import { EndsInPipe } from '../../../../core/pipes/ends-in.pipe';
 
 export type SurveyCardVariant = 'featured' | 'row';
 
-/** A survey reduced to the strings a card renders. */
+/** A survey reduced to what a card renders; the countdown is derived on display. */
 export interface SurveyCardView {
   id: string;
   category: string;
   title: string;
-  endsIn: string;
+  endDate: string | null;
 }
 
 @Component({
   selector: 'app-survey-card',
-  imports: [BadgeComponent, RouterLink],
+  imports: [BadgeComponent, RouterLink, EndsInPipe],
   templateUrl: './survey-card.component.html',
   styleUrl: './survey-card.component.scss',
   host: {
@@ -27,5 +28,5 @@ export class SurveyCardComponent {
   readonly id = input.required<string>();
   readonly category = input.required<string>();
   readonly title = input.required<string>();
-  readonly endsIn = input.required<string>();
+  readonly endDate = input.required<string | null>();
 }

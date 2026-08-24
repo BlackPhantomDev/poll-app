@@ -1,7 +1,7 @@
 <div class="surveys-container">
 
     @for (survey of surveys(); track survey.id) {
-        <app-survey-card variant="row" [id]="survey.id" [category]="survey.category" [title]="survey.title" [endsIn]="survey.endsIn" />
+        <app-survey-card variant="row" [id]="survey.id" [category]="survey.category" [title]="survey.title" [endDate]="survey.endDate" />
     }
 
 </div>

@@ -15,24 +15,8 @@ import { SurveyCreateDialogComponent } from '../../survey-create/survey-create-d
 import { SurveyService } from '../../../core/services/survey.service';
 import { SurveyListItem } from '../../../core/models';
 
-const DAY_IN_MS = 86_400_000;
-
 function isActive(survey: SurveyListItem, now: number): boolean {
   return survey.end_date === null || new Date(survey.end_date).getTime() > now;
-}
-
-function formatEndsIn(endDate: string | null): string {
-  if (endDate === null) {
-    return 'No end date';
-  }
-
-  const days = Math.ceil((new Date(endDate).getTime() - Date.now()) / DAY_IN_MS);
-
-  if (days <= 0) {
-    return 'Ended';
-  }
-
-  return days === 1 ? 'Ends in 1 day' : `Ends in ${days} days`;
 }
 
 function toCardView(survey: SurveyListItem): SurveyCardView {
@@ -40,7 +24,7 @@ function toCardView(survey: SurveyListItem): SurveyCardView {
     id: survey.id,
     title: survey.title,
     category: categoryLabel(survey.category) ?? 'Uncategorized',
-    endsIn: formatEndsIn(survey.end_date),
+    endDate: survey.end_date,
   };
 }
 

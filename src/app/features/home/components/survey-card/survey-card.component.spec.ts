@@ -18,7 +18,7 @@ describe('SurveyCardComponent', () => {
     fixture.componentRef.setInput('id', 'survey-1');
     fixture.componentRef.setInput('category', 'Team Activities');
     fixture.componentRef.setInput('title', 'Test survey');
-    fixture.componentRef.setInput('endsIn', 'Ends in 1 day');
+    fixture.componentRef.setInput('endDate', null);
     await fixture.whenStable();
   });
 
