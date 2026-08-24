@@ -18,6 +18,10 @@
     font-weight: var(--font-weight-bold);
 }
 
+.option__required {
+    @include required-marker;
+}
+
 .option__label {
     @include visually-hidden;
 }
