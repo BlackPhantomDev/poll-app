@@ -56,8 +56,13 @@ export class SurveyDetailPageComponent {
     loader: ({ params }) => this.resultsService.getResponses(params),
   });
 
-  /** Loaded participations plus every row that arrived over realtime since. */
-  private readonly responses = linkedSignal(() => this.responsesResource.value() ?? []);
+  /**
+   * Loaded participations plus every row that arrived over realtime since. `value()`
+   * throws after a failed load, so reading it has to go through `hasValue()`.
+   */
+  private readonly responses = linkedSignal<ResponseVotes[]>(() =>
+    this.responsesResource.hasValue() ? this.responsesResource.value() : [],
+  );
 
   protected readonly results = computed(() => {
     const questions = this.surveyResource.hasValue() ? this.surveyResource.value().questions : [];

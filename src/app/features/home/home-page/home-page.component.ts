@@ -57,7 +57,10 @@ export class HomePageComponent {
     loader: () => this.surveyService.getSurveys(),
   });
 
-  private readonly surveys = computed(() => this.surveysResource.value() ?? []);
+  /** `value()` throws once the load failed, so the error state has to go through `hasValue()`. */
+  private readonly surveys = computed(() =>
+    this.surveysResource.hasValue() ? this.surveysResource.value() : [],
+  );
 
   protected readonly endingSoon = computed(() => {
     const now = Date.now();
