@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, inject, output, signal, viewChild } from '@angular/core';
+import { AfterViewInit, Component, computed, ElementRef, inject, output, signal, viewChild } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormArray, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -8,7 +9,13 @@ import { ButtonComponent } from '../../../shared/components/button/button.compon
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
 import { CloseButtonComponent } from '../../../shared/components/close-button/close-button.component';
 import { SurveyService } from '../../../core/services/survey.service';
-import { createQuestionForm, createSurveyForm, MIN_QUESTIONS, QuestionForm } from '../survey-create-form';
+import {
+  createQuestionForm,
+  createSurveyForm,
+  firstInvalidFieldId,
+  MIN_QUESTIONS,
+  QuestionForm,
+} from '../survey-create-form';
 
 @Component({
   imports: [
@@ -41,6 +48,21 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
 
   /** Set when the RPC failed; the dialog stays open so nothing typed is lost. */
   protected readonly publishError = signal<string | null>(null);
+
+  /** Turned on by the first rejected submit and never off, so gaps stay visible. */
+  protected readonly submitted = signal(false);
+
+  /** Reactive mirror of the form status – control state alone does not notify the view. */
+  private readonly status = toSignal(this.form.statusChanges, { initialValue: this.form.status });
+
+  /** Summarises in the footer why the submit did not go through. */
+  protected readonly footerError = computed(() => {
+    if (this.submitted() && this.status() === 'INVALID') {
+      return 'Please fill in the highlighted fields.';
+    }
+
+    return this.publishError();
+  });
 
   protected get questions(): FormArray<QuestionForm> {
     return this.form.controls.questions;
@@ -82,13 +104,20 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
 
   /** Publishes the survey via the create_survey RPC and navigates to its detail page. */
   protected async publish(): Promise<void> {
-    if (this.form.invalid || this.publishing()) {
+    if (this.publishing()) {
+      return;
+    }
+
+    this.publishError.set(null);
+    this.submitted.set(true);
+
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.focusFirstInvalidField();
       return;
     }
 
     this.publishing.set(true);
-    this.publishError.set(null);
 
     try {
       const { questions, ...meta } = this.form.getRawValue();
@@ -116,6 +145,18 @@ export class SurveyCreateDialogComponent implements AfterViewInit {
     } finally {
       this.publishing.set(false);
     }
+  }
+
+  /** Scrolls the field that blocks publishing into view and puts the caret in it. */
+  private focusFirstInvalidField(): void {
+    const fieldId = firstInvalidFieldId(this.form);
+
+    if (fieldId === null) {
+      return;
+    }
+
+    const field = this.dialogEl().nativeElement.querySelector<HTMLElement>(`#${CSS.escape(fieldId)}`);
+    field?.focus();
   }
 
   /** Appends an empty question carrying the minimum number of answer options. */

@@ -30,3 +30,7 @@
     @include form-input;
     width: 100%;
 }
+
+.option__error {
+    @include field-error;
+}

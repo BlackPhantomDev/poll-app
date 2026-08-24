@@ -28,8 +28,11 @@ $colors: (
 
   'survey-status-published': var(--color-primary-orange),
 
-  'input-field-bg': #FEFDFF, 
+  'input-field-bg': #FEFDFF,
   'input-field-bg-active': var(--color-light-orange),
+
+  'error': #D9503F,
+  'error-on-dark': #FFA694,
 
   'bg-light': #FEFDFF,
 

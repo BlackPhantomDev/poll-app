@@ -41,6 +41,55 @@ export const MAX_QUESTION_LENGTH = 300;
 
 export const MAX_OPTION_LENGTH = 200;
 
+export const SURVEY_TITLE_FIELD_ID = 'survey-name';
+
+export const SURVEY_CATEGORY_FIELD_ID = 'survey-category';
+
+/** The group id is a UUID, so the field id stays unique across questions. */
+export function questionTextFieldId(question: QuestionForm): string {
+  return `question-text-${question.controls.id.value}`;
+}
+
+/** The group id is a UUID, so the field id stays unique across options. */
+export function answerOptionFieldId(option: AnswerOptionForm): string {
+  return `answer-option-${option.controls.id.value}`;
+}
+
+/** The message belonging to a field is wired to it through `aria-describedby`. */
+export function fieldErrorId(fieldId: string): string {
+  return `${fieldId}-error`;
+}
+
+/** A field stays quiet until the user has left it or tried to publish. */
+export function showFieldError(control: AbstractControl, submitted: boolean): boolean {
+  return control.invalid && (control.touched || submitted);
+}
+
+/** The field a rejected submit should jump to, in reading order. */
+export function firstInvalidFieldId(form: SurveyCreateForm): string | null {
+  if (form.controls.title.invalid) {
+    return SURVEY_TITLE_FIELD_ID;
+  }
+
+  if (form.controls.category.invalid) {
+    return SURVEY_CATEGORY_FIELD_ID;
+  }
+
+  for (const question of form.controls.questions.controls) {
+    if (question.controls.text.invalid) {
+      return questionTextFieldId(question);
+    }
+
+    for (const option of question.controls.options.controls) {
+      if (option.controls.label.invalid) {
+        return answerOptionFieldId(option);
+      }
+    }
+  }
+
+  return null;
+}
+
 /** `Validators.required` accepts "   ", which would store a blank title as valid. */
 function nonBlank(control: AbstractControl<string>): ValidationErrors | null {
   return control.value.trim().length > 0 ? null : { required: true };

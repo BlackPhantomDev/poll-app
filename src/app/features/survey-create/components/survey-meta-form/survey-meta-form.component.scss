@@ -51,6 +51,10 @@
     @include required-marker;
 }
 
+.meta__error {
+    @include field-error;
+}
+
 .meta__control {
     display: flex;
     align-items: center;

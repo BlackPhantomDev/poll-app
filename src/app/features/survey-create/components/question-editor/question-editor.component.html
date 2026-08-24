@@ -4,8 +4,13 @@
         <app-icon-button label="Remove question" (click)="removed.emit()" />
     </div>
 
-    <label class="question__text-label" [for]="textId()">Question {{ index() + 1 }} text</label>
-    <input class="question__text" [id]="textId()" type="text" formControlName="text" [maxlength]="maxQuestion" aria-required="true" placeholder="Which date would work best for you?" />
+    <div class="question__field">
+        <label class="question__text-label" [for]="textId()">Question {{ index() + 1 }} text</label>
+        <input class="question__text" [id]="textId()" type="text" formControlName="text" [maxlength]="maxQuestion" aria-required="true" [attr.aria-invalid]="showError(text)" [attr.aria-describedby]="showError(text) ? textErrorId() : null" placeholder="Which date would work best for you?" />
+        @if (showError(text)) {
+            <p class="question__error" [id]="textErrorId()">Please enter the question.</p>
+        }
+    </div>
 
     <div class="question__answers">
         <span class="question__answers-label">Answers</span>
@@ -19,6 +24,7 @@
         <app-answer-option-editor
             [group]="option"
             [index]="$index"
+            [submitted]="submitted()"
             (removed)="removeOption($index)" />
     }
 

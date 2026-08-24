@@ -19,6 +19,12 @@
     color: inherit;
 }
 
+.question__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+}
+
 .question__text-label {
     @include visually-hidden;
 }
@@ -26,6 +32,10 @@
 .question__text {
     @include form-input;
     width: 100%;
+}
+
+.question__error {
+    @include field-error;
 }
 
 .question__answers {

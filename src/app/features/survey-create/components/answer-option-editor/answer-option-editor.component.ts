@@ -1,9 +1,15 @@
 import { Component, computed, input, output } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 
 import { IconButtonComponent } from '../../../../shared/components/icon-button/icon-button.component';
 import { OptionLetterPipe } from '../../../../core/pipes/option-letter.pipe';
-import { AnswerOptionForm, MAX_OPTION_LENGTH } from '../../survey-create-form';
+import {
+  AnswerOptionForm,
+  answerOptionFieldId,
+  fieldErrorId,
+  MAX_OPTION_LENGTH,
+  showFieldError,
+} from '../../survey-create-form';
 
 @Component({
   selector: 'app-answer-option-editor',
@@ -14,10 +20,23 @@ import { AnswerOptionForm, MAX_OPTION_LENGTH } from '../../survey-create-form';
 export class AnswerOptionEditorComponent {
   readonly group = input.required<AnswerOptionForm>();
   readonly index = input.required<number>();
+
+  /** Reveals the messages of fields the user never touched, after a rejected submit. */
+  readonly submitted = input(false);
+
   readonly removed = output<void>();
 
   protected readonly maxOption = MAX_OPTION_LENGTH;
 
-  /** The form group id is a UUID, so it keeps the label unique across options. */
-  protected readonly inputId = computed(() => `answer-option-${this.group().controls.id.value}`);
+  protected readonly inputId = computed(() => answerOptionFieldId(this.group()));
+
+  protected readonly errorId = computed(() => fieldErrorId(this.inputId()));
+
+  protected get labelControl(): AbstractControl<string> {
+    return this.group().controls.label;
+  }
+
+  protected showError(control: AbstractControl): boolean {
+    return showFieldError(control, this.submitted());
+  }
 }
