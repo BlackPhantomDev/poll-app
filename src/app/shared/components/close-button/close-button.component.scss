@@ -1,0 +1,23 @@
+@use '../../../../styles/mixins' as *;
+
+:host {
+  display: inline-flex;
+}
+
+.close {
+  @include reset-button;
+  @include centered-flex-box-row;
+  @include focus-visible;
+
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-button);
+  background-color: var(--close-bg, var(--color-light-orange));
+  color: var(--close-fg, var(--color-text-dark));
+  transition: background-color var(--duration-fast) var(--easing);
+
+  &:hover {
+    background-color: var(--close-bg-hover, var(--color-secondary-orange));
+  }
+}

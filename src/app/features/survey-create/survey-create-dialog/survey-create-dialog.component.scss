@@ -81,19 +81,15 @@
     }
 }
 
-.dialog-header__bottom app-button {
-    --button-text-color: var(--color-text-light);
-    --button-bg-color: var(--color-secondary-btn);
-    --button-bg-color-hover: var(--color-secondary-btn-hover);
+.dialog-header__close {
+    --close-fg: var(--color-text-light);
+    --close-bg: var(--color-secondary-btn-hover);
+    --close-bg-hover: var(--color-secondary-btn);
 }
 
 .dialog-header__title {
     font-size: var(--font-size-h4);
     color: var(--color-dialog-header-orange);
-}
-
-.dialog-header__close-icon {
-    flex-shrink: 0;
 }
 
 .dialog-header__legend {

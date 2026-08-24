@@ -6,6 +6,7 @@ import { QuestionEditorComponent } from '../components/question-editor/question-
 import { SurveyMetaFormComponent } from '../components/survey-meta-form/survey-meta-form.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
+import { CloseButtonComponent } from '../../../shared/components/close-button/close-button.component';
 import { SurveyService } from '../../../core/services/survey.service';
 import { createQuestionForm, createSurveyForm, MIN_QUESTIONS, QuestionForm } from '../survey-create-form';
 
@@ -16,6 +17,7 @@ import { createQuestionForm, createSurveyForm, MIN_QUESTIONS, QuestionForm } fro
     SurveyMetaFormComponent,
     ButtonComponent,
     BadgeComponent,
+    CloseButtonComponent,
   ],
   selector: 'app-survey-create-dialog',
   templateUrl: './survey-create-dialog.component.html',
