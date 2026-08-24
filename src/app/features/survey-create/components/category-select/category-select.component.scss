@@ -1,5 +1,10 @@
 @use '../../../../../styles/mixins' as *;
 
+:host {
+    min-width: 0;
+    max-width: 100%;
+}
+
 .category__label {
     @include visually-hidden;
 }
@@ -8,6 +13,7 @@
     appearance: none;
     field-sizing: content;
     max-width: 100%;
+    text-overflow: ellipsis;
     border: none;
     background-color: transparent;
     color: var(--color-text-light);
