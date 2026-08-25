@@ -31,4 +31,22 @@ describe('SurveyMetaFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('counts along while the survey name is typed', async () => {
+    const field: HTMLInputElement = fixture.nativeElement.querySelector('#survey-name');
+
+    field.value = 'Team lunch';
+    field.dispatchEvent(new Event('input'));
+    await fixture.whenStable();
+
+    const counter: HTMLElement = fixture.nativeElement.querySelector('app-char-counter');
+
+    expect(counter.textContent).toContain('10 / 100');
+  });
+
+  it('keeps the end date from pointing into the past', () => {
+    const field: HTMLInputElement = fixture.nativeElement.querySelector('#survey-end-date');
+
+    expect(field.min).toBe(new Date().toLocaleDateString('en-CA'));
+  });
 });

@@ -3,6 +3,7 @@ import { AbstractControl, FormArray, ReactiveFormsModule } from '@angular/forms'
 
 import { AnswerOptionEditorComponent } from '../answer-option-editor/answer-option-editor.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { CharCounterComponent } from '../../../../shared/components/char-counter/char-counter.component';
 import { IconButtonComponent } from '../../../../shared/components/icon-button/icon-button.component';
 import {
   AnswerOptionForm,
@@ -17,7 +18,13 @@ import {
 
 @Component({
   selector: 'app-question-editor',
-  imports: [ReactiveFormsModule, AnswerOptionEditorComponent, ButtonComponent, IconButtonComponent],
+  imports: [
+    ReactiveFormsModule,
+    AnswerOptionEditorComponent,
+    ButtonComponent,
+    IconButtonComponent,
+    CharCounterComponent,
+  ],
   templateUrl: './question-editor.component.html',
   styleUrl: './question-editor.component.scss',
 })

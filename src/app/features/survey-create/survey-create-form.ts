@@ -33,9 +33,9 @@ export const MIN_QUESTIONS = 1;
 
 export const MIN_OPTIONS = 2;
 
-export const MAX_TITLE_LENGTH = 200;
+export const MAX_TITLE_LENGTH = 100;
 
-export const MAX_DESCRIPTION_LENGTH = 2000;
+export const MAX_DESCRIPTION_LENGTH = 1000;
 
 export const MAX_QUESTION_LENGTH = 300;
 
@@ -44,6 +44,15 @@ export const MAX_OPTION_LENGTH = 200;
 export const SURVEY_TITLE_FIELD_ID = 'survey-name';
 
 export const SURVEY_CATEGORY_FIELD_ID = 'survey-category';
+
+export const SURVEY_END_DATE_FIELD_ID = 'survey-end-date';
+
+/** `<input type="date">` and its `min` attribute both speak `YYYY-MM-DD` in local time. */
+export function todayAsIsoDate(): string {
+  const now = new Date();
+
+  return new Date(now.getTime() - now.getTimezoneOffset() * 60_000).toISOString().slice(0, 10);
+}
 
 /** The group id is a UUID, so the field id stays unique across questions. */
 export function questionTextFieldId(question: QuestionForm): string {
@@ -69,6 +78,10 @@ export function showFieldError(control: AbstractControl, submitted: boolean): bo
 export function firstInvalidFieldId(form: SurveyCreateForm): string | null {
   if (form.controls.title.invalid) {
     return SURVEY_TITLE_FIELD_ID;
+  }
+
+  if (form.controls.endDate.invalid) {
+    return SURVEY_END_DATE_FIELD_ID;
   }
 
   if (form.controls.category.invalid) {
@@ -109,6 +122,20 @@ function knownCategory(control: AbstractControl<CategorySlug | null>): Validatio
     : { unknownCategory: true };
 }
 
+/**
+ * A survey that already ended could never be answered. Today stays allowed – it runs
+ * until midnight. Both values are `YYYY-MM-DD`, so comparing them as strings is enough.
+ */
+function notInPast(control: AbstractControl<string | null>): ValidationErrors | null {
+  const value = control.value;
+
+  if (value === null || value === '') {
+    return null;
+  }
+
+  return value >= todayAsIsoDate() ? null : { endDateInPast: true };
+}
+
 /** Builds an empty create form; it already carries the one question that is required. */
 export function createSurveyForm(): SurveyCreateForm {
   return new FormGroup({
@@ -121,7 +148,7 @@ export function createSurveyForm(): SurveyCreateForm {
       validators: Validators.maxLength(MAX_DESCRIPTION_LENGTH),
     }),
     category: new FormControl<CategorySlug | null>(null, { validators: knownCategory }),
-    endDate: new FormControl<string | null>(null),
+    endDate: new FormControl<string | null>(null, { validators: notInPast }),
     questions: new FormArray([createQuestionForm()]),
   });
 }

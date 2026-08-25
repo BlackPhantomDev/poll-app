@@ -1,0 +1,12 @@
+:host {
+  align-self: flex-end;
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.7;
+}
+
+:host(.char-counter--full) {
+  color: var(--color-primary-orange);
+  font-weight: var(--font-weight-bold);
+  opacity: 1;
+}

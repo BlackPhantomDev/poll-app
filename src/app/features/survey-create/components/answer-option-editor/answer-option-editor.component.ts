@@ -1,6 +1,7 @@
 import { Component, computed, input, output } from '@angular/core';
 import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 
+import { CharCounterComponent } from '../../../../shared/components/char-counter/char-counter.component';
 import { IconButtonComponent } from '../../../../shared/components/icon-button/icon-button.component';
 import { OptionLetterPipe } from '../../../../core/pipes/option-letter.pipe';
 import {
@@ -13,7 +14,7 @@ import {
 
 @Component({
   selector: 'app-answer-option-editor',
-  imports: [ReactiveFormsModule, IconButtonComponent, OptionLetterPipe],
+  imports: [ReactiveFormsModule, IconButtonComponent, OptionLetterPipe, CharCounterComponent],
   templateUrl: './answer-option-editor.component.html',
   styleUrl: './answer-option-editor.component.scss',
 })
