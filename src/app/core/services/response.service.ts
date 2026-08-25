@@ -1,19 +1,23 @@
 import { inject, Service } from '@angular/core';
 
 import { SupabaseService } from './supabase.service';
-import { Answer } from '../models';
+import { Answer, SurveyResponse } from '../models';
 
 @Service()
 export class ResponseService {
   private readonly sb = inject(SupabaseService).client;
 
-  /** Writes one participation as a single row into responses. */
-  async submitResponse(surveyId: string, answers: Answer[]): Promise<void> {
-    const { error } = await this.sb
+  /** Writes one participation as a single row into responses and returns its id. */
+  async submitResponse(surveyId: string, answers: Answer[]): Promise<string> {
+    const { data, error } = await this.sb
       .from('responses')
-      .insert({ survey_id: surveyId, answers });
+      .insert({ survey_id: surveyId, answers })
+      .select('id')
+      .single();
 
     if (error) throw error;
+
+    return (data as Pick<SurveyResponse, 'id'>).id;
   }
 
   /** True when this browser already voted on the survey. */

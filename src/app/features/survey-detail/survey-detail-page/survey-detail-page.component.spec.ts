@@ -83,7 +83,7 @@ describe('SurveyDetailPageComponent', () => {
 
     vi.spyOn(responseService, 'hasVoted').mockReturnValue(options.voted ?? false);
     markVoted = vi.spyOn(responseService, 'markVoted').mockImplementation(() => undefined);
-    submitResponse = vi.spyOn(responseService, 'submitResponse').mockResolvedValue(undefined);
+    submitResponse = vi.spyOn(responseService, 'submitResponse').mockResolvedValue('r-own');
 
     fixture = TestBed.createComponent(SurveyDetailPageComponent);
     component = fixture.componentInstance;
@@ -152,6 +152,55 @@ describe('SurveyDetailPageComponent', () => {
     expect(markVoted).not.toHaveBeenCalled();
     expect(component['formDisabled']()).toBe(false);
     expect(notice()).toBe('Your answers could not be submitted. Please try again.');
+  });
+
+  it('counts the own picks before they are submitted', async () => {
+    await setup({ responses: [{ id: 'r1', answers: [{ question_id: 'q1', option_ids: ['o1'] }] }] });
+
+    component['picks'].set([{ question_id: 'q1', option_ids: ['o2'] }]);
+    await fixture.whenStable();
+
+    expect(component['results']()[0].options.map((option) => option.percent)).toEqual([50, 50]);
+    expect(submitResponse).not.toHaveBeenCalled();
+  });
+
+  it('leaves the bars untouched while no option is picked', async () => {
+    await setup({ responses: [{ id: 'r1', answers: [{ question_id: 'q1', option_ids: ['o1'] }] }] });
+
+    component['picks'].set([{ question_id: 'q1', option_ids: [] }]);
+    await fixture.whenStable();
+
+    expect(component['results']()[0].options[0].votes).toBe(1);
+    expect(component['previewVotes']()).toEqual([]);
+  });
+
+  it('turns the preview into a stored vote instead of counting it twice', async () => {
+    await setup();
+
+    const answers = [{ question_id: 'q1', option_ids: ['o1'] }];
+    component['picks'].set(answers);
+    await fixture.whenStable();
+
+    expect(component['results']()[0].options[0].votes).toBe(1);
+
+    await component['submit'](answers);
+    await fixture.whenStable();
+
+    expect(component['results']()[0].options[0].votes).toBe(1);
+    expect(component['previewVotes']()).toEqual([]);
+  });
+
+  it('ignores the realtime echo of the own participation', async () => {
+    await setup();
+
+    await component['submit']([{ question_id: 'q1', option_ids: ['o1'] }]);
+    await fixture.whenStable();
+
+    const onInsert = watchResponses.mock.calls[0][1];
+    onInsert({ id: 'r-own', answers: [{ question_id: 'q1', option_ids: ['o1'] }] });
+    await fixture.whenStable();
+
+    expect(component['results']()[0].options[0].votes).toBe(1);
   });
 
   it('counts a participation that arrives over realtime', async () => {

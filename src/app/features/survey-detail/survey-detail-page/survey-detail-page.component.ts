@@ -23,6 +23,9 @@ import { ResponseService } from '../../../core/services/response.service';
 import { ResultsService, ResponseVotes } from '../../../core/services/results.service';
 import { Answer } from '../../../core/models';
 
+/** Marks the preview row apart from the stored participations, which carry a UUID. */
+const PREVIEW_RESPONSE_ID = 'preview';
+
 @Component({
   selector: 'app-survey-detail-page',
   imports: [
@@ -66,12 +69,35 @@ export class SurveyDetailPageComponent {
     this.responsesResource.hasValue() ? this.responsesResource.value() : [],
   );
 
+  /**
+   * The picks of this visitor, reset when the page switches to another survey. They
+   * stay here until Complete is pressed – nothing of this reaches the database.
+   */
+  protected readonly picks = linkedSignal<string, Answer[]>({
+    source: () => this.id(),
+    computation: () => [],
+  });
+
+  /** Questions the visitor has not answered yet contribute nothing to the bars. */
+  protected readonly previewVotes = computed(() =>
+    this.picks().filter((answer) => answer.option_ids.length > 0),
+  );
+
+  /** Stored participations plus the own picks, counted as one more participation. */
+  private readonly countedResponses = computed<ResponseVotes[]>(() => {
+    const preview = this.previewVotes();
+
+    return preview.length === 0
+      ? this.responses()
+      : [...this.responses(), { id: PREVIEW_RESPONSE_ID, answers: preview }];
+  });
+
   protected readonly results = computed(() => {
     const questions = this.surveyResource.hasValue() ? this.surveyResource.value().questions : [];
 
     return this.resultsService.buildResults(
       questions,
-      this.resultsService.countVotes(this.responses()),
+      this.resultsService.countVotes(this.countedResponses()),
     );
   });
 
@@ -126,14 +152,21 @@ export class SurveyDetailPageComponent {
     onCleanup(() => this.resultsService.removeChannel(channel));
   });
 
-  /** Stores one participation row and locks the form for this browser. */
+  /**
+   * Stores one participation row and locks the form for this browser. The row is kept
+   * right away, so the preview turns into a counted vote without the bars jumping while
+   * the realtime event is still on its way.
+   */
   protected async submit(answers: Answer[]): Promise<void> {
     this.submitting.set(true);
     this.submitError.set(null);
 
     try {
-      await this.responseService.submitResponse(this.id(), answers);
+      const id = await this.responseService.submitResponse(this.id(), answers);
+
       this.responseService.markVoted(this.id());
+      this.addResponse({ id, answers });
+      this.picks.set([]);
       this.voted.set(true);
     } catch {
       this.submitError.set('Your answers could not be submitted. Please try again.');

@@ -20,6 +20,9 @@ export class SurveyParticipateFormComponent {
 
   readonly submitted = output<Answer[]>();
 
+  /** Fires on every pick so the results can show the own vote before it is stored. */
+  readonly selectionChanged = output<Answer[]>();
+
   protected readonly selections = signal<Record<string, string[]>>({});
 
   protected readonly complete = computed(() =>
@@ -41,6 +44,8 @@ export class SurveyParticipateFormComponent {
 
       return { ...current, [question.id]: next };
     });
+
+    this.selectionChanged.emit(this.toAnswers());
   }
 
   /** Emits one answer per question once every question has at least one pick. */
@@ -49,11 +54,14 @@ export class SurveyParticipateFormComponent {
       return;
     }
 
-    this.submitted.emit(
-      this.questions().map((question) => ({
-        question_id: question.id,
-        option_ids: this.selections()[question.id] ?? [],
-      })),
-    );
+    this.submitted.emit(this.toAnswers());
+  }
+
+  /** One answer per question in display order; a question without a pick stays empty. */
+  private toAnswers(): Answer[] {
+    return this.questions().map((question) => ({
+      question_id: question.id,
+      option_ids: this.selections()[question.id] ?? [],
+    }));
   }
 }

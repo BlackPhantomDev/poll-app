@@ -14,6 +14,9 @@ export class SurveyResultsComponent {
   /** Warns that the bars below are missing votes; without it zeros read as "no votes". */
   readonly error = input<string | null>(null);
 
+  /** True while the bars include picks that are not submitted yet. */
+  readonly preview = input(false);
+
   /** Only drives the phone layout; from sm up the styles keep the results open regardless. */
   protected readonly expanded = signal(false);
 

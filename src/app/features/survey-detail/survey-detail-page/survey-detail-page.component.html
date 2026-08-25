@@ -25,13 +25,15 @@
                 [disabled]="formDisabled()"
                 [notice]="notice()"
                 [error]="submitError()"
+                (selectionChanged)="picks.set($event)"
                 (submitted)="submit($event)" />
         </section>
 
         <app-survey-results
             class="detail__results"
             [results]="results()"
-            [error]="resultsError()" />
+            [error]="resultsError()"
+            [preview]="previewVotes().length > 0" />
     }
 </main>
 

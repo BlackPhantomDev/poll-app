@@ -10,6 +10,12 @@
     @include inline-error;
 }
 
+.results__preview {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-result-percent);
+}
+
 .results__toggle {
     @include reset-button;
     @include focus-visible;

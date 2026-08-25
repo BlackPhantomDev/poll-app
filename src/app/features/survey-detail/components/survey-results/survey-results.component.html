@@ -21,6 +21,10 @@
         <p class="results__error" role="status">{{ text }}</p>
     }
 
+    @if (preview()) {
+        <p class="results__preview" role="status">Your answers are already counted here. They are saved once you press Complete.</p>
+    }
+
     @for (question of results(); track question.questionId) {
         <section class="results__question">
             <h3 class="results__question-title">{{ $index + 1 }}. {{ question.text }}</h3>
