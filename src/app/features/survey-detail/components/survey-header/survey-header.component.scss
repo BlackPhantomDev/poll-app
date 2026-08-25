@@ -35,9 +35,11 @@
 }
 
 .survey-header__title {
+    @include break-long-words;
     font-size: var(--font-size-h3);
 }
 
 .survey-header__description {
+    @include break-long-words;
     max-width: 60ch;
 }

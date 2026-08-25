@@ -15,7 +15,7 @@
                     [checked]="selected().includes(option.id)"
                     (change)="optionToggled.emit(option.id)" />
                 <span class="question__letter">{{ $index | optionLetter }}.</span>
-                <span>{{ option.label }}</span>
+                <span class="question__option-label">{{ option.label }}</span>
             </label>
         }
     </div>

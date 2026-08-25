@@ -10,6 +10,7 @@
 }
 
 .question__title {
+    @include break-long-words;
     padding: 0;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-bold);
@@ -40,6 +41,10 @@
 
 .question__letter {
     font-weight: var(--font-weight-bold);
+}
+
+.question__option-label {
+    @include break-long-words;
 }
 
 .question:disabled {

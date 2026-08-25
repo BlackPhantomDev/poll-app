@@ -82,6 +82,7 @@
 }
 
 .results__question-title {
+    @include break-long-words;
     font-size: var(--font-size-md);
     font-family: var(--font-body);
     font-weight: var(--font-weight-bold);

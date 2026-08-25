@@ -25,6 +25,7 @@
 }
 
 .card__title {
+  @include break-long-words;
   font-size: var(--survey-card-title-size, var(--font-size-xl));
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-snug);

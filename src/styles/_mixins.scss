@@ -65,6 +65,11 @@
   padding-inline: var(--layout-gutter);
 }
 
+@mixin break-long-words {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 @mixin display-title {
   font-family: var(--font-heading);
   font-weight: var(--font-weight-regular);
