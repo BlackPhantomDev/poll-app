@@ -39,7 +39,8 @@ h1 {
 }
 
 .hero__new-survey {
-    @include button-reveal-icon('.hero__new-survey-icon');
+    @include button-reveal-icon('.hero__new-survey-icon', $from: md);
+    --button-font-size: var(--font-size-md);
     align-self: center;
 
     @include media-up(md) {

@@ -142,28 +142,30 @@
   }
 }
 
-@mixin button-reveal-icon($icon, $size: 24px) {
+@mixin button-reveal-icon($icon, $size: 24px, $from: sm) {
   --button-gap: var(--space-2xs);
 
   @media (hover: hover) {
-    --button-gap: 0;
+    @include media-up($from) {
+      --button-gap: 0;
 
-    #{$icon} {
-      width: 0;
-      margin-inline-start: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition:
-        width var(--duration-base) var(--easing),
-        margin-inline-start var(--duration-base) var(--easing),
-        opacity var(--duration-base) var(--easing);
-    }
+      #{$icon} {
+        width: 0;
+        margin-inline-start: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+          width var(--duration-base) var(--easing),
+          margin-inline-start var(--duration-base) var(--easing),
+          opacity var(--duration-base) var(--easing);
+      }
 
-    &:hover #{$icon},
-    &:has(:focus-visible) #{$icon} {
-      width: $size;
-      margin-inline-start: var(--space-2xs);
-      opacity: 1;
+      &:hover #{$icon},
+      &:has(:focus-visible) #{$icon} {
+        width: $size;
+        margin-inline-start: var(--space-2xs);
+        opacity: 1;
+      }
     }
   }
 }
