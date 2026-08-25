@@ -15,7 +15,8 @@ app-footer {
 }
 
 app-footer {
-    margin-block-start: var(--space-3xl);
+    margin-block-start: auto;
+    padding-block-start: var(--space-3xl);
 }
 
 app-ending-soon,
