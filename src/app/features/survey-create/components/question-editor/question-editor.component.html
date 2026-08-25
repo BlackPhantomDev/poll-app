@@ -7,10 +7,12 @@
     <div class="question__field">
         <label class="question__text-label" [for]="textId()">Question {{ index() + 1 }} text</label>
         <input class="question__text" [id]="textId()" type="text" formControlName="text" [maxlength]="maxQuestion" aria-required="true" [attr.aria-invalid]="showError(text)" [attr.aria-describedby]="showError(text) ? textErrorId() : null" placeholder="Which date would work best for you?" />
-        <app-char-counter [value]="text.value" [max]="maxQuestion" />
-        @if (showError(text)) {
-            <p class="question__error" [id]="textErrorId()">Please enter the question.</p>
-        }
+        <div class="question__feedback">
+            @if (showError(text)) {
+                <p class="question__error" [id]="textErrorId()">Please enter the question.</p>
+            }
+            <app-char-counter [value]="text.value" [max]="maxQuestion" />
+        </div>
     </div>
 
     <div class="question__answers">

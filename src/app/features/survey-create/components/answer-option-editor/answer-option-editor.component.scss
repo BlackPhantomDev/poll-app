@@ -34,3 +34,7 @@
 .option__error {
     @include field-error;
 }
+
+.option__feedback {
+    @include field-meta-row;
+}

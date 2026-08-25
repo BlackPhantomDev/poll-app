@@ -38,6 +38,10 @@
     @include field-error;
 }
 
+.question__feedback {
+    @include field-meta-row;
+}
+
 .question__answers {
     display: flex;
     flex-wrap: wrap;

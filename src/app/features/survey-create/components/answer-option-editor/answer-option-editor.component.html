@@ -5,8 +5,10 @@
         <app-icon-button label="Remove answer" (click)="removed.emit()" />
     </div>
     <input class="option__input" [id]="inputId()" type="text" formControlName="label" [maxlength]="maxOption" aria-required="true" [attr.aria-invalid]="showError(labelControl)" [attr.aria-describedby]="showError(labelControl) ? errorId() : null" />
-    <app-char-counter [value]="labelControl.value" [max]="maxOption" />
-    @if (showError(labelControl)) {
-        <p class="option__error" [id]="errorId()">Please enter an answer.</p>
-    }
+    <div class="option__feedback">
+        @if (showError(labelControl)) {
+            <p class="option__error" [id]="errorId()">Please enter an answer.</p>
+        }
+        <app-char-counter [value]="labelControl.value" [max]="maxOption" />
+    </div>
 </div>

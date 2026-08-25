@@ -99,6 +99,18 @@
   font-weight: var(--font-weight-bold);
 }
 
+@mixin field-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-sm);
+  min-height: calc(2 * var(--field-meta-height));
+
+  @include media-up(sm) {
+    min-height: var(--field-meta-height);
+  }
+}
+
 @mixin inline-error {
   border-inline-start: 3px solid var(--color-error);
   border-radius: var(--radius-button);

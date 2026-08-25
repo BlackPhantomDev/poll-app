@@ -165,5 +165,7 @@ $breakpoints: (
     @each $name, $value in $layout {
       --layout-#{$name}: #{$value};
     }
+
+    --field-meta-height: calc(var(--font-size-xs) * var(--line-height-normal));
   }
 }

@@ -21,6 +21,10 @@
         .meta__field {
             flex: 0 1 auto;
         }
+
+        app-category-select {
+            margin-block-end: calc(var(--space-2xs) + var(--field-meta-height));
+        }
     }
 }
 
@@ -53,6 +57,10 @@
 
 .meta__error {
     @include field-error;
+}
+
+.meta__feedback {
+    @include field-meta-row;
 }
 
 .meta__control {

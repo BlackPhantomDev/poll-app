@@ -7,10 +7,12 @@
         <div class="meta__control">
             <input [id]="titleId" type="text" formControlName="title" [maxlength]="maxTitle" aria-required="true" [attr.aria-invalid]="showError(title)" [attr.aria-describedby]="showError(title) ? titleErrorId : null" />
         </div>
-        <app-char-counter [value]="title.value" [max]="maxTitle" />
-        @if (showError(title)) {
-            <p class="meta__error" [id]="titleErrorId">Please enter a survey name.</p>
-        }
+        <div class="meta__feedback">
+            @if (showError(title)) {
+                <p class="meta__error" [id]="titleErrorId">Please enter a survey name.</p>
+            }
+            <app-char-counter [value]="title.value" [max]="maxTitle" />
+        </div>
     </div>
 
     <div class="meta__row">
@@ -22,9 +24,11 @@
             <div class="meta__control">
                 <input [id]="endDateId" type="date" formControlName="endDate" [min]="today" [attr.aria-invalid]="showError(endDate)" [attr.aria-describedby]="showError(endDate) ? endDateErrorId : null" />
             </div>
-            @if (showError(endDate)) {
-                <p class="meta__error" [id]="endDateErrorId">The end date cannot be in the past.</p>
-            }
+            <div class="meta__feedback">
+                @if (showError(endDate)) {
+                    <p class="meta__error" [id]="endDateErrorId">The end date cannot be in the past.</p>
+                }
+            </div>
         </div>
         <app-category-select />
     </div>
